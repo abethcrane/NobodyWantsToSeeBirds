@@ -1,0 +1,8 @@
+.vs/*
+2016-nobodywantstoseebirds-old/*
+System.IO.FileSystem.dll
+*.DS_Store
+Assets/Tasty_Characters*
+Library/*
+Obj/*
+Temp/*
