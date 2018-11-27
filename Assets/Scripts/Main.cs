@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class Main : MonoBehaviour
 {
+    public event System.Action LostLife;
+
     public static Main Instance;
     public float SecondsBetweenSpawns = 3f;
     public float Velocity = 1f;
@@ -25,9 +27,6 @@ public class Main : MonoBehaviour
     private string[] _lives;
 
     [SerializeField]
-    private GameObject _visionTriangle;
-
-    [SerializeField]
     private GameObject _birdPool;
 
     private bool _isGameOver = false;
@@ -35,15 +34,13 @@ public class Main : MonoBehaviour
     private List<GameObject> _birds = new List<GameObject>();
     private int _numLives;
     private int _score = 0;
-    private Animator _visionAnimator;
     private float _leftScreenX;
 
-    private void Start()
+    private void Awake()
     {
         Instance = this;
         _timeSinceLastSpawn = 0f;
         _numLives = _lives.Length;
-        _visionAnimator = _visionTriangle.GetComponent<Animator>();
         _leftScreenX = -1 * Camera.main.ScreenToWorldPoint(new Vector3(0, 0, -10)).x;
         SpawnBird();
     }
@@ -84,16 +81,13 @@ public class Main : MonoBehaviour
     {
         _numLives -= 1;
 
-        if (_numLives >= 0)
-        {
-            _healthText.text = "Health: " + _lives[_numLives];
-        }
-        else
+        _healthText.text = "Health: " + _lives[_numLives];
+        LostLife?.Invoke();
+
+        if (_numLives == 0)
         {
             GameOver();
         }
-
-        _visionAnimator.SetTrigger("Pulse");
     }
 
 
