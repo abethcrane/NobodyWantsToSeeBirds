@@ -1,4 +1,4 @@
-# nobody-wants-to-see-birds
+# Nobody Wants to See Birds
 
 Nobody wants to see birds; a phone game, built in Unity and C#.
 
