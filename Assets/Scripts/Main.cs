@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Main : MonoBehaviour
 {
@@ -34,14 +33,14 @@ public class Main : MonoBehaviour
     private List<GameObject> _birds = new List<GameObject>();
     private int _numLives;
     private int _score = 0;
-    private float _leftScreenX;
+    private Camera _camera;
 
     private void Awake()
     {
         Instance = this;
         _timeSinceLastSpawn = 0f;
         _numLives = _lives.Length;
-        _leftScreenX = -1 * Camera.main.ScreenToWorldPoint(new Vector3(0, 0, -10)).x;
+        _camera = Camera.main;
         SpawnBird();
     }
 
@@ -55,15 +54,7 @@ public class Main : MonoBehaviour
             {
                 SpawnBird();
                 _timeSinceLastSpawn = 0f;
-                SecondsBetweenSpawns -= (SecondsBetweenSpawns / 10f * 1 / Time.timeSinceLevelLoad);
-            }
-        }
-        else
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                int scene = SceneManager.GetActiveScene().buildIndex;
-                SceneManager.LoadScene(scene, LoadSceneMode.Single);
+                SecondsBetweenSpawns -= Time.deltaTime; //(SecondsBetweenSpawns / 10f * 1 / Time.timeSinceLevelLoad);
             }
         }
 	}
@@ -99,13 +90,13 @@ public class Main : MonoBehaviour
             return;
         }
         birdObj.SetActive(true);
-        birdObj.transform.position = new Vector3(_leftScreenX, Random.Range(-1f, 5f), -0.1f);
-        Debug.Log(birdObj.transform.position);
+        float leftSideOfScreen = _camera.ViewportToWorldPoint(new Vector3(0, 0, 10)).x;
+        birdObj.transform.position = new Vector3(leftSideOfScreen, Random.Range(-1f, 5f), -0.1f);
         Bird bird = birdObj.GetComponent<Bird>();
         bird.Reset();
         Fly fly = birdObj.GetComponent<Fly>();
         fly.Velocity = new Vector3(Velocity, 0, 0);
-        Velocity += (1f / Mathf.Max(1, Time.timeSinceLevelLoad));
+        Velocity += (1f / Mathf.Max(1, Time.timeSinceLevelLoad)) + Time.deltaTime;
     }
 
     private GameObject GetOrCreatePooledBird()

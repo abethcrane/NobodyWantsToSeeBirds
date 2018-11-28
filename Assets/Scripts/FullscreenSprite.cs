@@ -21,7 +21,10 @@ public class FullscreenSprite : MonoBehaviour
             scale *= cameraSize.y / spriteSize.y;
         }
 
-        transform.position = Vector2.zero;
+        Camera camera = Camera.main;
+        float bottomOfScreen = camera.ViewportToWorldPoint(new Vector3(0, 0, 10)).y;
+
+        transform.position = new Vector2(0, bottomOfScreen + 5);
         transform.localScale = scale;
     }
 }
