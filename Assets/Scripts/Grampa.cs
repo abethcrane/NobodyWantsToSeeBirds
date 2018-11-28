@@ -10,9 +10,10 @@ public class Grampa : MonoBehaviour
 
     private void Awake()
     {
-        float rightScreenX = Camera.main.ScreenToWorldPoint(new Vector3(1, 0, -10)).x;
+        Vector3 rightBottomScreen = Camera.main.ScreenToWorldPoint(new Vector3(1, 1, -10));
         Vector3 newPos = transform.parent.position;
-        newPos.x = rightScreenX - 6;
+        newPos.x = rightBottomScreen.x - 6;
+        newPos.y = -1*rightBottomScreen.y + 6;
         transform.parent.position = newPos;
     }
 
