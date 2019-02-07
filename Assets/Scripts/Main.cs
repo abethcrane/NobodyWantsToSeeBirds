@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class Main : MonoBehaviour
 {
+    private const int NumBirdsPerQuoteLevelQuote = 50;
+    private const float DefaultDecayRate = 0.75f;
+
     public event System.Action LostLife;
 
     public static Main Instance;
-    public float SecondsBetweenSpawns = 3f;
+    public float SecondsBetweenSpawns = 3f; // Used only as a visual for debugging
     public float Velocity = 1f;
 
     [SerializeField]
@@ -34,6 +37,8 @@ public class Main : MonoBehaviour
     private int _numLives;
     private int _score = 0;
     private Camera _camera;
+    private int _numBirdsSpawned = 0;
+    private float[] _spawnSecondsPerLevel = new float[]{2f, 1f, 0.875f, 0.75f, 0.5f, 0.45f, 0.4f, 0.375f, 0.36f, 0.35f, 0.345f};
 
     private void Awake()
     {
@@ -54,10 +59,49 @@ public class Main : MonoBehaviour
             {
                 SpawnBird();
                 _timeSinceLastSpawn = 0f;
-                SecondsBetweenSpawns -= Time.deltaTime; //(SecondsBetweenSpawns / 10f * 1 / Time.timeSinceLevelLoad);
+                int level = _numBirdsSpawned / NumBirdsPerQuoteLevelQuote;
+                if (level >= _spawnSecondsPerLevel.Length)
+                {
+                    level = _spawnSecondsPerLevel.Length - 1;
+                }
+
+                float start = _spawnSecondsPerLevel[level];
+                float end = start * DefaultDecayRate;
+                if (level < _spawnSecondsPerLevel.Length - 1)
+                {
+                    end = _spawnSecondsPerLevel[level + 1];
+                }
+
+                SecondsBetweenSpawns = GetNextLerp(start, end, SecondsBetweenSpawns, NumBirdsPerQuoteLevelQuote);
             }
         }
 	}
+    
+    private float GetNextLerp(float start, float end, float current, int num_steps)
+    {
+        float range = end - start;
+        if (current < start && start < end)
+        {
+            return start;
+        }
+        else if (current > start && start > end)
+        {
+            return start;
+        }
+        else if (current > end && start < end)
+        {
+            return end;
+        }
+        else if (current < end && start > end)
+        {
+            return end;
+        }
+        else
+        {
+            float step = range / num_steps;
+            return current + step;
+        }
+    }
 
     public void OffScreen()
     {
@@ -71,6 +115,11 @@ public class Main : MonoBehaviour
     public void LoseLife()
     {
         _numLives -= 1;
+
+        if (_numLives < 0)
+        {
+            return;
+        }
 
         _healthText.text = "Health: " + _lives[_numLives];
         LostLife?.Invoke();
@@ -97,6 +146,8 @@ public class Main : MonoBehaviour
         Fly fly = birdObj.GetComponent<Fly>();
         fly.Velocity = new Vector3(Velocity, 0, 0);
         Velocity += (1f / Mathf.Max(1, Time.timeSinceLevelLoad)) + Time.deltaTime;
+
+        _numBirdsSpawned++;
     }
 
     private GameObject GetOrCreatePooledBird()
