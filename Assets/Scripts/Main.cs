@@ -31,6 +31,9 @@ public class Main : MonoBehaviour
     [SerializeField]
     private GameObject _birdPool;
 
+    [SerializeField]
+    private Transform _grandpaTransform;
+
     private bool _isGameOver = false;
     private float _timeSinceLastSpawn;
     private List<GameObject> _birds = new List<GameObject>();
@@ -39,6 +42,9 @@ public class Main : MonoBehaviour
     private Camera _camera;
     private int _numBirdsSpawned = 0;
     private float[] _spawnSecondsPerLevel = new float[]{2f, 1f, 0.875f, 0.75f, 0.5f, 0.45f, 0.4f, 0.375f, 0.36f, 0.35f, 0.345f};
+    private float _topOfScreen;
+    float _screenWidth;
+    float _screenHeight;
 
     private void Awake()
     {
@@ -47,12 +53,24 @@ public class Main : MonoBehaviour
         _numLives = _lives.Length;
         _camera = Camera.main;
         SpawnBird();
+
+        _topOfScreen = _camera.ViewportToWorldPoint(new Vector3(0.5f, 1f, 10)).y;
+        _screenWidth = Screen.width;
+        _screenHeight = Screen.height;
     }
 
 	private void Update()
     {
         if (!_isGameOver)
         {
+
+        if (_screenHeight != Screen.height || _screenWidth != Screen.width)
+        {
+            _screenWidth = Screen.width;
+            _screenHeight = Screen.height;
+            _topOfScreen = _camera.ViewportToWorldPoint(new Vector3(0.5f, 1f, 10)).y;
+        }
+
             _timeSinceLastSpawn += Time.deltaTime;
 
             if (_timeSinceLastSpawn > SecondsBetweenSpawns)
@@ -140,7 +158,7 @@ public class Main : MonoBehaviour
         }
         birdObj.SetActive(true);
         float leftSideOfScreen = _camera.ViewportToWorldPoint(new Vector3(0, 0, 10)).x;
-        birdObj.transform.position = new Vector3(leftSideOfScreen, Random.Range(-1f, 5f), -0.1f);
+        birdObj.transform.position = new Vector3(leftSideOfScreen, Random.Range(_grandpaTransform.position.y + 1.2f, _topOfScreen - 1f), -0.3f);
         Bird bird = birdObj.GetComponent<Bird>();
         bird.Reset();
         Fly fly = birdObj.GetComponent<Fly>();

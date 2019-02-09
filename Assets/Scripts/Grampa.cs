@@ -16,7 +16,7 @@ public class Grampa : MonoBehaviour
         // Good magic numbers in order to get it all visible on the screen
         newPos.x = rightBottomScreen.x - 7;
         newPos.y = rightBottomScreen.y + 4.5f;
-        transform.parent.position = newPos;
+        //transform.parent.position = newPos;
     }
 
     private void Start()
