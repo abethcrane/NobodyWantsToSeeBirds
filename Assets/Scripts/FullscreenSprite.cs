@@ -42,7 +42,7 @@ public class FullscreenSprite : MonoBehaviour
         float distance = transform.position.z - _camera.transform.position.z;
         float screenHeight = 2 * Mathf.Tan(_camera.fieldOfView * Mathf.Deg2Rad / 2) * distance;
         float screenWidth = screenHeight * _camera.aspect;
-        transform.localScale = new Vector3(screenWidth / spriteWidth, screenWidth / spriteWidth, 1); //screenHeight / spriteWidth, 1f);
+        transform.localScale = new Vector3(screenWidth / spriteWidth, screenWidth / spriteWidth, 1);
 
         float viewPortValue = 1f;
         if (_anchorPos == AnchorPoint.Center)

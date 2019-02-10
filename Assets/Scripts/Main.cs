@@ -63,13 +63,12 @@ public class Main : MonoBehaviour
     {
         if (!_isGameOver)
         {
-
-        if (_screenHeight != Screen.height || _screenWidth != Screen.width)
-        {
-            _screenWidth = Screen.width;
-            _screenHeight = Screen.height;
-            _topOfScreen = _camera.ViewportToWorldPoint(new Vector3(0.5f, 1f, 10)).y;
-        }
+            if (_screenHeight != Screen.height || _screenWidth != Screen.width)
+            {
+                _screenWidth = Screen.width;
+                _screenHeight = Screen.height;
+                _topOfScreen = _camera.ViewportToWorldPoint(new Vector3(0.5f, 1f, 10)).y;
+            }
 
             _timeSinceLastSpawn += Time.deltaTime;
 
