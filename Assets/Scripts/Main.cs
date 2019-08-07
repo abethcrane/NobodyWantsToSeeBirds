@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Main : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class Main : MonoBehaviour
     private const float DefaultDecayRate = 0.75f;
 
     public event System.Action LostLife;
+    public event System.Action GameOver;
 
     public static Main Instance;
     public float SecondsBetweenSpawns = 3f; // Used only as a visual for debugging
@@ -17,7 +19,10 @@ public class Main : MonoBehaviour
     private TextMeshProUGUI _healthText;
 
     [SerializeField]
-    private GameObject _gameOverText;
+    private GameObject _tapToPlay;
+
+    [SerializeField]
+    private GameObject _pauseButton;
 
     [SerializeField]
     private TextMeshProUGUI _scoreText;
@@ -35,6 +40,7 @@ public class Main : MonoBehaviour
     private Transform _grandpaTransform;
 
     private bool _isGameOver = false;
+    private bool _isGamePaused = false;
     private float _timeSinceLastSpawn;
     private List<GameObject> _birds = new List<GameObject>();
     private int _numLives;
@@ -46,22 +52,23 @@ public class Main : MonoBehaviour
     float _screenWidth;
     float _screenHeight;
 
+    private bool IsGameActive => !_isGameOver && !_isGamePaused;
+
     private void Awake()
     {
         Instance = this;
-        _timeSinceLastSpawn = 0f;
-        _numLives = _lives.Length;
         _camera = Camera.main;
-        SpawnBird();
 
         _topOfScreen = _camera.ViewportToWorldPoint(new Vector3(0.5f, 1f, 10)).y;
         _screenWidth = Screen.width;
         _screenHeight = Screen.height;
+
+        _numLives = _lives.Length - 1;
     }
 
-	private void Update()
+    private void Update()
     {
-        if (!_isGameOver)
+        if (IsGameActive)
         {
             if (_screenHeight != Screen.height || _screenWidth != Screen.width)
             {
@@ -92,8 +99,60 @@ public class Main : MonoBehaviour
                 SecondsBetweenSpawns = GetNextLerp(start, end, SecondsBetweenSpawns, NumBirdsPerQuoteLevelQuote);
             }
         }
-	}
-    
+    }
+
+    public void StartGame()
+    {
+        // Reload the scene, but that doesn't reload this script
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        foreach (GameObject bird in _birds)
+        {
+            GameObject.Destroy(bird);
+        }
+        _birds.Clear();
+
+        _timeSinceLastSpawn = 0f;
+
+        _numLives = _lives.Length - 1;
+        _score = 0;
+        SpawnBird();
+
+        _isGameOver = false;
+        _isGamePaused = false;
+    }
+
+    public void OffScreen()
+    {
+        if (IsGameActive)
+        {
+            _score += 1;
+            _scoreText.text = "Score: " + _score.ToString();
+        }
+    }
+
+    public void LoseLife()
+    {
+        _numLives -= 1;
+
+        if (_numLives < 0)
+        {
+            return;
+        }
+
+        _healthText.text = "Health: " + _lives[_numLives];
+        LostLife?.Invoke();
+
+        if (_numLives == 0)
+        {
+            EndGame();
+        }
+    }
+
+    public void TogglePause()
+    {
+        _isGamePaused = !_isGamePaused;
+    }
+
     private float GetNextLerp(float start, float end, float current, int num_steps)
     {
         float range = end - start;
@@ -120,37 +179,9 @@ public class Main : MonoBehaviour
         }
     }
 
-    public void OffScreen()
-    {
-        if (!_isGameOver)
-        {
-            _score += 1;
-            _scoreText.text = "Score: " + _score.ToString();
-        }
-    }
-
-    public void LoseLife()
-    {
-        _numLives -= 1;
-
-        if (_numLives < 0)
-        {
-            return;
-        }
-
-        _healthText.text = "Health: " + _lives[_numLives];
-        LostLife?.Invoke();
-
-        if (_numLives == 0)
-        {
-            GameOver();
-        }
-    }
-
-
     private void SpawnBird()
     {
-        GameObject birdObj = GetPooledBird();
+        GameObject birdObj = GetOrCreatePooledBird();
         if (birdObj == null)
         {
             return;
@@ -193,15 +224,11 @@ public class Main : MonoBehaviour
         return null;
     }
 
-
-    private void GameOver()
+    private void EndGame()
     {
         _isGameOver = true;
-        _gameOverText.SetActive(true);
-        foreach (GameObject bird in _birds)
-        {
-            GameObject.Destroy(bird);
-        }
-        _birds.Clear();
+        _tapToPlay.SetActive(true);
+        _pauseButton.SetActive(false);
+        GameOver?.Invoke();
     }
 }
