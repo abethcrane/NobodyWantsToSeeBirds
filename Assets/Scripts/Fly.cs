@@ -7,6 +7,6 @@ public class Fly : MonoBehaviour {
     void Update ()
     {
         float dt = Time.deltaTime;
-        transform.Translate(Velocity * dt);
+        transform.Translate(Velocity * dt * Main.Instance.TimeFactor);
     }
 }

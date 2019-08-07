@@ -52,6 +52,8 @@ public class Main : MonoBehaviour
     float _screenWidth;
     float _screenHeight;
 
+    public float TimeFactor => _isGamePaused ? 0f : 1f;
+
     private bool IsGameActive => !_isGameOver && !_isGamePaused;
 
     private void Awake()
@@ -139,7 +141,7 @@ public class Main : MonoBehaviour
             return;
         }
 
-        _healthText.text = "Health: " + _lives[_numLives];
+        _healthText.text = string.Format("Lives: {0} {1}", _numLives, _lives[_numLives]);
         LostLife?.Invoke();
 
         if (_numLives == 0)
