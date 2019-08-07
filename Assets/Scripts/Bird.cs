@@ -2,17 +2,23 @@
 
 public class Bird : MonoBehaviour
 {
+    [SerializeField]
+    private AudioSource _cubeAppear;
+
+    [SerializeField]
+    private AudioSource _cubeDisappear;
+
     private Animator _anim;
-    private bool _isVisible = true;
+    private bool _isVisibleToGrampa = true;
     private bool _hasLostLife = false;
     private OnScreenVisibilityEventer _sprite;
 
     public void Reset()
     {
-        _isVisible = true;
+        _isVisibleToGrampa = true;
         if (_anim != null)
         {
-            _anim.SetBool("IsVisible", _isVisible);
+            _anim.SetBool("IsVisible", _isVisibleToGrampa);
         }
         _hasLostLife = false;
     }
@@ -26,8 +32,17 @@ public class Bird : MonoBehaviour
 
     private void OnMouseDown()
     {
-        _isVisible = !_isVisible;
-        _anim.SetBool("IsVisible", _isVisible);
+        _isVisibleToGrampa = !_isVisibleToGrampa;
+        _anim.SetBool("IsVisible", _isVisibleToGrampa);
+
+        if (_isVisibleToGrampa)
+        {
+            _cubeDisappear.Play();
+        }
+        else
+        {
+            _cubeAppear.Play();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -42,7 +57,7 @@ public class Bird : MonoBehaviour
 
     private void WhileInLineOfSight()
     {
-        if (_isVisible && !_hasLostLife)
+        if (_isVisibleToGrampa && !_hasLostLife)
         {
             Main.Instance.LoseLife();
             _hasLostLife = true;
