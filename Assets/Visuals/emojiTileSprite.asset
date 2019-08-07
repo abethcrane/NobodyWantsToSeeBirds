@@ -4,7 +4,8 @@
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -14,7 +15,115 @@ MonoBehaviour:
   hashCode: -1787159879
   material: {fileID: 21383351350929148}
   materialHashCode: 0
+  m_Version: 1.1.0
   spriteSheet: {fileID: 2800000, guid: 9aaefe3f196814866b71187b9e22284a, type: 3}
+  m_SpriteCharacterTable:
+  - m_ElementType: 2
+    m_Unicode: 128522
+    m_GlyphIndex: 0
+    m_Scale: 1
+    m_Name: smilingFace
+    m_HashCode: 175100826
+  - m_ElementType: 2
+    m_Unicode: 128528
+    m_GlyphIndex: 1
+    m_Scale: 1
+    m_Name: neutralFace
+    m_HashCode: -1521237068
+  - m_ElementType: 2
+    m_Unicode: 62994
+    m_GlyphIndex: 2
+    m_Scale: 1
+    m_Name: unamusedFace
+    m_HashCode: -1741818223
+  - m_ElementType: 2
+    m_Unicode: 128544
+    m_GlyphIndex: 3
+    m_Scale: 1
+    m_Name: angryFace
+    m_HashCode: 1727690210
+  - m_ElementType: 2
+    m_Unicode: 129327
+    m_GlyphIndex: 4
+    m_Scale: 1
+    m_Name: explodingHead
+    m_HashCode: 1077766946
+  m_SpriteGlyphTable:
+  - m_Index: 0
+    m_Metrics:
+      m_Width: 158
+      m_Height: 156
+      m_HorizontalBearingX: 0
+      m_HorizontalBearingY: 129
+      m_HorizontalAdvance: 158
+    m_GlyphRect:
+      m_X: 0
+      m_Y: 160
+      m_Width: 158
+      m_Height: 156
+    m_Scale: 1
+    m_AtlasIndex: 0
+    sprite: {fileID: 21300000, guid: 9aaefe3f196814866b71187b9e22284a, type: 3}
+  - m_Index: 1
+    m_Metrics:
+      m_Width: 159
+      m_Height: 158
+      m_HorizontalBearingX: 0
+      m_HorizontalBearingY: 130
+      m_HorizontalAdvance: 159
+    m_GlyphRect:
+      m_X: 162
+      m_Y: 162
+      m_Width: 159
+      m_Height: 158
+    m_Scale: 1
+    m_AtlasIndex: 0
+    sprite: {fileID: 21300002, guid: 9aaefe3f196814866b71187b9e22284a, type: 3}
+  - m_Index: 2
+    m_Metrics:
+      m_Width: 153
+      m_Height: 160
+      m_HorizontalBearingX: 0
+      m_HorizontalBearingY: 131
+      m_HorizontalAdvance: 153
+    m_GlyphRect:
+      m_X: 327
+      m_Y: 160
+      m_Width: 153
+      m_Height: 160
+    m_Scale: 1
+    m_AtlasIndex: 0
+    sprite: {fileID: 21300004, guid: 9aaefe3f196814866b71187b9e22284a, type: 3}
+  - m_Index: 3
+    m_Metrics:
+      m_Width: 154
+      m_Height: 156
+      m_HorizontalBearingX: 0
+      m_HorizontalBearingY: 130
+      m_HorizontalAdvance: 154
+    m_GlyphRect:
+      m_X: 0
+      m_Y: 0
+      m_Width: 154
+      m_Height: 156
+    m_Scale: 1
+    m_AtlasIndex: 0
+    sprite: {fileID: 21300006, guid: 9aaefe3f196814866b71187b9e22284a, type: 3}
+  - m_Index: 4
+    m_Metrics:
+      m_Width: 160
+      m_Height: 162
+      m_HorizontalBearingX: 0
+      m_HorizontalBearingY: 131
+      m_HorizontalAdvance: 160
+    m_GlyphRect:
+      m_X: 159
+      m_Y: 0
+      m_Width: 160
+      m_Height: 162
+    m_Scale: 1
+    m_AtlasIndex: 0
+    sprite: {fileID: 21300008, guid: 9aaefe3f196814866b71187b9e22284a, type: 3}
   spriteInfoList:
   - id: 0
     x: 0
@@ -92,7 +201,8 @@ Material:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: TextMeshPro/Sprite
   m_Shader: {fileID: 4800000, guid: cf81c85f95fe47e1a27f6ae460cf182c, type: 3}
   m_ShaderKeywords: 
