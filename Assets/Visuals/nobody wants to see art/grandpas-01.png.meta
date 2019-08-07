@@ -1,14 +1,24 @@
 fileFormatVersion: 2
 guid: 6704ddfa152bd492ebd3667bd7bba11c
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: grampa2-happy
-    21300002: grampa2-neutral
-    21300004: grampa2-unamused
-    21300006: grampa2-angry
-    21300008: grampa2-exploding
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: grampa2-happy
+  - first:
+      213: 21300002
+    second: grampa2-neutral
+  - first:
+      213: 21300004
+    second: grampa2-unamused
+  - first:
+      213: 21300006
+    second: grampa2-angry
+  - first:
+      213: 21300008
+    second: grampa2-exploding
   externalObjects: {}
-  serializedVersion: 7
+  serializedVersion: 10
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -63,7 +73,7 @@ TextureImporter:
   compressionQualitySet: 0
   textureFormatSet: 0
   platformSettings:
-  - serializedVersion: 2
+  - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -74,7 +84,8 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -85,7 +96,8 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
     buildTarget: iPhone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -96,7 +108,8 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
     buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -107,6 +120,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -118,14 +132,15 @@ TextureImporter:
         y: 2390
         width: 441
         height: 521
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.28568384, y: 0.8659429}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: ac6898ca735ae4499af986fa3a7c2e26
+      internalID: 21300000
       vertices: []
       indices: 
       edges: []
@@ -135,17 +150,18 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 559
-        y: 2394
+        y: 2392
         width: 436
         height: 517
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.3729255, y: 0.86562204}
       border: {x: 0, y: 0, z: 15, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: df43f2abd9ec84e3a9393054229f1241
+      internalID: 21300002
       vertices: []
       indices: 
       edges: []
@@ -158,14 +174,15 @@ TextureImporter:
         y: 2391
         width: 421
         height: 516
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.40323362, y: 0.87580484}
       border: {x: 0, y: 0, z: 5, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: 787b0d2c1bd24425fb0f9cbbd9282d35
+      internalID: 21300004
       vertices: []
       indices: 
       edges: []
@@ -178,14 +195,15 @@ TextureImporter:
         y: 2394
         width: 396
         height: 515
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.4218146, y: 0.8733702}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: 78dc9bb44f38e4244b975377f146475b
+      internalID: 21300006
       vertices: []
       indices: 
       edges: []
@@ -194,18 +212,19 @@ TextureImporter:
       name: grampa2-exploding
       rect:
         serializedVersion: 2
-        x: 2112
+        x: 2110
         y: 2409
         width: 394
         height: 495
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.42555323, y: 0.87857974}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: 02458d4aa76ca41cc8a1b23de42d6a77
+      internalID: 21300008
       vertices: []
       indices: 
       edges: []
@@ -214,10 +233,12 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 7ddc394bea4074e94b46d7ec2f15a707
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
+    secondaryTextures: []
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
