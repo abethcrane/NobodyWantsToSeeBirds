@@ -65,6 +65,10 @@ namespace Assets.Plugins.ButtonSoundsEditor.Editor
             _candidates.AddRange(buttons);
             _buttonCandidates.AddRange(buttons);
 
+            var toggles = Resources.FindObjectsOfTypeAll<Toggle>().Where(_ => PrefabUtility.GetPrefabType(_) != PrefabType.Prefab).Select(_ => _.gameObject).ToList();
+            _candidates.AddRange(toggles);
+            _buttonCandidates.AddRange(toggles);
+
             var eventTriggers = Resources.FindObjectsOfTypeAll<EventTrigger>()
                 .Where(_ => PrefabUtility.GetPrefabType(_) != PrefabType.Prefab &&
                             _.triggers.Any(e => e.eventID == EventTriggerType.PointerClick)).Select(_ => _.gameObject).ToList();

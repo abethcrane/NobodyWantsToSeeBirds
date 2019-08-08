@@ -25,9 +25,6 @@ public class Main : MonoBehaviour
     private GameObject _pauseButton;
 
     [SerializeField]
-    private TMPro.TextMeshProUGUI _pauseText;
-
-    [SerializeField]
     private TextMeshProUGUI _scoreText;
 
     [SerializeField]
@@ -156,7 +153,6 @@ public class Main : MonoBehaviour
     public void TogglePause()
     {
         _isGamePaused = !_isGamePaused;
-        _pauseText.text = _isGamePaused ? "\uf04b" : "\uf04c";
     }
 
     private float GetNextLerp(float start, float end, float current, int num_steps)

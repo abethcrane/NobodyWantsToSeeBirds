@@ -25,6 +25,17 @@ namespace Assets.Plugins.ButtonSoundsEditor
                 if (clickEntry != null)
                     clickEntry.callback.AddListener(_ => PlayClickSound());
             }
+
+            Toggle toggle = GetComponent<Toggle>();
+            if (toggle != null)
+            {
+                toggle.onValueChanged.AddListener(PlayClickSoundBool);
+            }
+        }
+
+        private void PlayClickSoundBool(bool _)
+        {
+            PlayClickSound();
         }
 
         private void PlayClickSound()
