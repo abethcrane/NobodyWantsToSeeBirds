@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(AudioSource))]
 public class Grampa : MonoBehaviour
 {
     [SerializeField]
@@ -12,12 +11,13 @@ public class Grampa : MonoBehaviour
     [SerializeField]
     private AudioClip[] _lostLifeGrumbles;
 
+    [SerializeField]
+    private AudioSource _grumblesSource;
+
     private int _numLivesLost = 0;
-    private AudioSource _audioSource;
 
     private void Start()
     {
-        _audioSource = gameObject.GetComponent<AudioSource>();
         Main.Instance.LostLife += OnLostLife;
     }
 
@@ -28,8 +28,8 @@ public class Grampa : MonoBehaviour
 
         if (_numLivesLost < _lostLifeGrumbles.Length)
         {
-            _audioSource.clip = _lostLifeGrumbles[_numLivesLost];
-            _audioSource.Play();
+            _grumblesSource.clip = _lostLifeGrumbles[_numLivesLost];
+            _grumblesSource.Play();
         }
 
         _numLivesLost++;
