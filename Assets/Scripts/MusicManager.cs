@@ -12,6 +12,9 @@ public class MusicManager : MonoBehaviour
     [SerializeField]
     private AudioSource _themeMusicLoop;
 
+    private float[] _pitchPerLevel = new float[] { 1f, 1.04f, 1.07f, 1f, 1.125f, 1.15f, 1.175f, 1.2f, 1.22f, 1.24f, 1.26f };
+    private int _level = 0;
+
     private void Awake()
     {
         _themeMusicIntro.Play();
@@ -21,6 +24,20 @@ public class MusicManager : MonoBehaviour
     private void Start()
     {
         Main.Instance.GameOver += OnGameOver;
+        Main.Instance.BirdSpawned += OnBirdSpawned;
+    }
+
+    private void OnBirdSpawned(int newLevel)
+    {
+        _level = newLevel;
+        float start = _pitchPerLevel[_level];
+        float end = start;
+        if (_level < _pitchPerLevel.Length - 1)
+        {
+            end = _pitchPerLevel[_level + 1];
+        }
+
+        _themeMusicLoop.pitch = Helpers.GetNextLerp(start, end, _themeMusicLoop.pitch, Main.NumBirdsPerQuoteLevelQuote);
     }
 
     private void OnGameOver()

@@ -5,13 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class Main : MonoBehaviour
 {
-    private const int NumBirdsPerQuoteLevelQuote = 50;
+    public const int NumBirdsPerQuoteLevelQuote = 50;
     private const float DefaultDecayRate = 0.75f;
 
     public event System.Action LostLife;
     public event System.Action GameOver;
+	public event System.Action<int> BirdSpawned;
 
-    public static Main Instance;
+	public static Main Instance;
     public float SecondsBetweenSpawns = 3f; // Used only as a visual for debugging
     public float Velocity = 1f;
 
@@ -48,7 +49,7 @@ public class Main : MonoBehaviour
     private Camera _camera;
     private int _numBirdsSpawned = 0;
     private float[] _spawnSecondsPerLevel = new float[]{2f, 1f, 0.875f, 0.75f, 0.5f, 0.45f, 0.4f, 0.375f, 0.36f, 0.35f, 0.345f};
-    private float _topOfScreen;
+	private float _topOfScreen;
     float _screenWidth;
     float _screenHeight;
 
@@ -94,14 +95,16 @@ public class Main : MonoBehaviour
                     level = _spawnSecondsPerLevel.Length - 1;
                 }
 
-                float start = _spawnSecondsPerLevel[level];
+				BirdSpawned?.Invoke(level);
+
+				float start = _spawnSecondsPerLevel[level];
                 float end = start * DefaultDecayRate;
                 if (level < _spawnSecondsPerLevel.Length - 1)
                 {
                     end = _spawnSecondsPerLevel[level + 1];
                 }
 
-                SecondsBetweenSpawns = GetNextLerp(start, end, SecondsBetweenSpawns, NumBirdsPerQuoteLevelQuote);
+                SecondsBetweenSpawns = Helpers.GetNextLerp(start, end, SecondsBetweenSpawns, NumBirdsPerQuoteLevelQuote);
             }
         }
     }
@@ -162,32 +165,6 @@ public class Main : MonoBehaviour
 	{
 		AudioListener.pause = !AudioListener.pause;
 	}
-
-    private float GetNextLerp(float start, float end, float current, int num_steps)
-    {
-        float range = end - start;
-        if (current < start && start < end)
-        {
-            return start;
-        }
-        else if (current > start && start > end)
-        {
-            return start;
-        }
-        else if (current > end && start < end)
-        {
-            return end;
-        }
-        else if (current < end && start > end)
-        {
-            return end;
-        }
-        else
-        {
-            float step = range / num_steps;
-            return current + step;
-        }
-    }
 
     private void SpawnBird()
     {
