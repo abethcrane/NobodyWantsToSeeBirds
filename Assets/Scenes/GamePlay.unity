@@ -2130,6 +2130,11 @@ PrefabInstance:
       propertyPath: AudioSource
       value: 
       objectReference: {fileID: 1390343127}
+    - target: {fileID: 3466237436245480658, guid: 3bde48c52d4cc4a77b2366a97560483d,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1335216100}
     - target: {fileID: 2997353427934349493, guid: 3bde48c52d4cc4a77b2366a97560483d,
         type: 3}
       propertyPath: m_SizeDelta.x

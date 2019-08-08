@@ -155,6 +155,11 @@ public class Main : MonoBehaviour
         _isGamePaused = !_isGamePaused;
     }
 
+	public void ToggleAudio()
+	{
+		AudioListener.pause = !AudioListener.pause;
+	}
+
     private float GetNextLerp(float start, float end, float current, int num_steps)
     {
         float range = end - start;
