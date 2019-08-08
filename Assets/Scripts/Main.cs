@@ -66,7 +66,10 @@ public class Main : MonoBehaviour
         _screenHeight = Screen.height;
 
         _numLives = _lives.Length - 1;
-    }
+
+        // Stop screen dimming
+		Screen.sleepTimeout = SleepTimeout.NeverSleep;
+	}
 
     private void Update()
     {
