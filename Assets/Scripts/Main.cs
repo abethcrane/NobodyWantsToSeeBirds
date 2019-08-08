@@ -57,7 +57,7 @@ public class Main : MonoBehaviour
 
     public float TimeFactor => _isGamePaused ? 0f : 1f;
 
-    private bool IsGameActive => !_isGameOver && !_isGamePaused;
+    public bool IsGameActive => !_isGameOver && !_isGamePaused;
 
     private void Awake()
     {

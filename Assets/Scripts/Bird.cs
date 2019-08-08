@@ -30,18 +30,22 @@ public class Bird : MonoBehaviour
         _sprite.BecameInvisible += OnBecameInvisible;
     }
 
+
     private void OnMouseDown()
     {
-        _isVisibleToGrampa = !_isVisibleToGrampa;
-        _anim.SetBool("IsVisible", _isVisibleToGrampa);
+        if (Main.Instance.IsGameActive)
+        {
+            _isVisibleToGrampa = !_isVisibleToGrampa;
+            _anim.SetBool("IsVisible", _isVisibleToGrampa);
 
-        if (_isVisibleToGrampa)
-        {
-            _cubeDisappear.Play();
-        }
-        else
-        {
-            _cubeAppear.Play();
+            if (_isVisibleToGrampa)
+            {
+                _cubeDisappear.Play();
+            }
+            else
+            {
+                _cubeAppear.Play();
+            }
         }
     }
 
