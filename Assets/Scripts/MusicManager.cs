@@ -40,7 +40,6 @@ public class MusicManager : MonoBehaviour
         }
 
         _themeMusicLoop.pitch = Helpers.GetNextLerp(start, end, _themeMusicLoop.pitch, Main.NumBirdsPerQuoteLevelQuote);
-        Debug.Log("_themeMusicLoop.pitch =" + _themeMusicLoop.pitch + " start = " +start + " end = " + end + " level = " + _level);
     }
 
     private void OnGameOver()
