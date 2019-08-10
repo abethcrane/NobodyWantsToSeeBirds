@@ -383,7 +383,7 @@ SpriteRenderer:
   m_Size: {x: 16.89, y: 16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &369402784
@@ -1506,7 +1506,7 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1.3138123
+      value: 1.5523987
       inSlope: -0.07315803
       outSlope: -0.07315803
       tangentMode: 0
@@ -2673,12 +2673,12 @@ PrefabInstance:
       objectReference: {fileID: 1390343127}
     - target: {fileID: 1119227869446236770, guid: 3bde48c52d4cc4a77b2366a97560483d,
         type: 3}
-      propertyPath: m_SizeDelta.y
+      propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1119227869446236770, guid: 3bde48c52d4cc4a77b2366a97560483d,
         type: 3}
-      propertyPath: m_SizeDelta.x
+      propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4054797661116147615, guid: 3bde48c52d4cc4a77b2366a97560483d,
@@ -2714,27 +2714,32 @@ PrefabInstance:
     - target: {fileID: 5767106639140384815, guid: 3bde48c52d4cc4a77b2366a97560483d,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 0
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 5767106639140384815, guid: 3bde48c52d4cc4a77b2366a97560483d,
         type: 3}
       propertyPath: m_textInfo.spaceCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5767106639140384815, guid: 3bde48c52d4cc4a77b2366a97560483d,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5767106639140384815, guid: 3bde48c52d4cc4a77b2366a97560483d,
         type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5767106639140384815, guid: 3bde48c52d4cc4a77b2366a97560483d,
         type: 3}
       propertyPath: m_textInfo.pageCount
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5767106639140384815, guid: 3bde48c52d4cc4a77b2366a97560483d,
+        type: 3}
+      propertyPath: m_text
+      value: 'Seconds: 0.0'
       objectReference: {fileID: 0}
     - target: {fileID: 7088201164750970097, guid: 3bde48c52d4cc4a77b2366a97560483d,
         type: 3}
@@ -2745,6 +2750,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1213720720218690595, guid: 3bde48c52d4cc4a77b2366a97560483d,
+        type: 3}
+      propertyPath: m_ChildAlignment
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5962497402736288077, guid: 3bde48c52d4cc4a77b2366a97560483d, type: 3}
