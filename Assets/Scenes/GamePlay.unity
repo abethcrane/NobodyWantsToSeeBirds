@@ -1424,6 +1424,8 @@ MonoBehaviour:
   _scoreText: {fileID: 470809501}
   _birdPrefab: {fileID: 1217480892379338, guid: 033c466139d06439f93754c928b324bf,
     type: 3}
+  _airBalloonPrefab: {fileID: 1217480892379338, guid: 42bb8b6193ed44b3996cd98a1071545c,
+    type: 3}
   _lives:
   - <sprite name="explodingHead">
   - <sprite name="angryFace">
