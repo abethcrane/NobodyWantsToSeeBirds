@@ -2,6 +2,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 public class Main : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class Main : MonoBehaviour
 
     public event System.Action LostLife;
     public event System.Action GameOver;
-	public event System.Action<int> BirdSpawned;
+	public event System.Action BirdSpawned;
 
 	public static Main Instance;
     public float SecondsBetweenSpawns = 3f; // Used only as a visual for debugging
@@ -40,7 +41,13 @@ public class Main : MonoBehaviour
     [SerializeField]
     private Transform _grandpaTransform;
 
-    private bool _isGameOver = false;
+	[SerializeField]
+	private AnimationCurve _spawnSpeedIncrease;
+
+	[SerializeField]
+	private AnimationCurve _birdVelocityIncrease;
+
+	private bool _isGameOver = false;
     private bool _isGamePaused = false;
     private float _timeSinceLastSpawn;
     private List<GameObject> _birds = new List<GameObject>();
@@ -48,7 +55,6 @@ public class Main : MonoBehaviour
     private int _score = 0;
     private Camera _camera;
     private int _numBirdsSpawned = 0;
-    private float[] _spawnSecondsPerLevel = new float[]{2f, 1f, 0.875f, 0.75f, 0.5f, 0.45f, 0.4f, 0.375f, 0.36f, 0.35f, 0.345f};
 	private float _topOfScreen;
     float _screenWidth;
     float _screenHeight;
@@ -68,7 +74,9 @@ public class Main : MonoBehaviour
 
         _numLives = _lives.Length - 1;
 
-        // Stop screen dimming
+		SpawnBird();
+
+		// Stop screen dimming
 		Screen.sleepTimeout = SleepTimeout.NeverSleep;
 	}
 
@@ -89,23 +97,8 @@ public class Main : MonoBehaviour
             {
                 SpawnBird();
                 _timeSinceLastSpawn = 0f;
-                int level = _numBirdsSpawned / NumBirdsPerQuoteLevelQuote;
-                if (level >= _spawnSecondsPerLevel.Length)
-                {
-                    level = _spawnSecondsPerLevel.Length - 1;
-                }
-
-				BirdSpawned?.Invoke(level);
-
-				float start = _spawnSecondsPerLevel[level];
-                float end = start * DefaultDecayRate;
-                if (level < _spawnSecondsPerLevel.Length - 1)
-                {
-                    end = _spawnSecondsPerLevel[level + 1];
-                }
-
-                SecondsBetweenSpawns = Helpers.GetNextLerp(start, end, SecondsBetweenSpawns, NumBirdsPerQuoteLevelQuote);
-            }
+                SecondsBetweenSpawns = _spawnSpeedIncrease.Evaluate(Time.timeSinceLevelLoad / 60);
+			}
         }
     }
 
@@ -179,11 +172,13 @@ public class Main : MonoBehaviour
         Bird bird = birdObj.GetComponent<Bird>();
         bird.Reset();
         Fly fly = birdObj.GetComponent<Fly>();
-        fly.Velocity = new Vector3(Velocity, 0, 0);
-        Velocity += (1f / Mathf.Max(1, Time.timeSinceLevelLoad)) + Time.deltaTime;
+		Velocity = _birdVelocityIncrease.Evaluate(Time.timeSinceLevelLoad / 60);
+		fly.Velocity = new Vector3(Velocity, 0, 0);
 
         _numBirdsSpawned++;
-    }
+
+		BirdSpawned?.Invoke();
+	}
 
     private GameObject GetOrCreatePooledBird()
     {
