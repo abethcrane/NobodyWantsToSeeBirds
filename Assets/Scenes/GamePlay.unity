@@ -186,6 +186,72 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &125112375
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1664301516}
+    m_Modifications:
+    - target: {fileID: 1217480892379338, guid: 42bb8b6193ed44b3996cd98a1071545c, type: 3}
+      propertyPath: m_Name
+      value: AirBalloonPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 1217480892379338, guid: 42bb8b6193ed44b3996cd98a1071545c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4154314740396330, guid: 42bb8b6193ed44b3996cd98a1071545c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 9.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 4154314740396330, guid: 42bb8b6193ed44b3996cd98a1071545c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 4154314740396330, guid: 42bb8b6193ed44b3996cd98a1071545c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4154314740396330, guid: 42bb8b6193ed44b3996cd98a1071545c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4154314740396330, guid: 42bb8b6193ed44b3996cd98a1071545c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4154314740396330, guid: 42bb8b6193ed44b3996cd98a1071545c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4154314740396330, guid: 42bb8b6193ed44b3996cd98a1071545c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4154314740396330, guid: 42bb8b6193ed44b3996cd98a1071545c, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4154314740396330, guid: 42bb8b6193ed44b3996cd98a1071545c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4154314740396330, guid: 42bb8b6193ed44b3996cd98a1071545c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4154314740396330, guid: 42bb8b6193ed44b3996cd98a1071545c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4186986360978167484, guid: 42bb8b6193ed44b3996cd98a1071545c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 42bb8b6193ed44b3996cd98a1071545c, type: 3}
 --- !u!1 &170076733
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,7 +325,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 1e-45, y: 7.1e-44, z: 0, w: 8.302592e+37}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -1185,6 +1251,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 895877464}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &942839009 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4154314740396330, guid: 42bb8b6193ed44b3996cd98a1071545c,
+    type: 3}
+  m_PrefabInstance: {fileID: 125112375}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1001181102
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1433,6 +1505,7 @@ MonoBehaviour:
   - <sprite name="neutralFace">
   - <sprite name="smilingFace">
   _birdPool: {fileID: 296068866}
+  _airBalloonPool: {fileID: 1664301515}
   _grandpaTransform: {fileID: 438797979}
   _spawnSpeedIncrease:
     serializedVersion: 2
@@ -1545,6 +1618,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _percentageBalloons: 8
 --- !u!4 &1335216101
 Transform:
   m_ObjectHideFlags: 0
@@ -1760,6 +1834,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1400299009}
   m_CullTransparentMesh: 0
+--- !u!1 &1664301515
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1664301516}
+  m_Layer: 0
+  m_Name: AirBalloonPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1664301516
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1664301515}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.575097, y: -0.41847742, z: -4.546964}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 942839009}
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1754036232
 PrefabInstance:
   m_ObjectHideFlags: 0

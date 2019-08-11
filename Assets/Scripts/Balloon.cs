@@ -1,12 +1,10 @@
 ﻿using UnityEngine;
 
+[RequireComponent(typeof(Animator))]
 public class Balloon : MonoBehaviour
 {
     [SerializeField]
-    private AudioSource _cubeAppear;
-
-    [SerializeField]
-    private AudioSource _cubeDisappear;
+    private Transform _child;
 
     private Animator _anim;
     private bool _hasLostLife = false;
@@ -18,9 +16,16 @@ public class Balloon : MonoBehaviour
         {
             _anim.SetBool("IsPopped", false);
         }
-        transform.position = Vector3.zero;
+        transform.localPosition = Vector3.zero;
         transform.rotation = Quaternion.identity;
+        _child.transform.localPosition = Vector3.zero;
         _hasLostLife = false;
+
+        Fly fly = GetComponent<Fly>();
+        if (fly != null)
+        {
+            fly.Velocity = new Vector3(2, 0, 0);
+        }
     }
 
     private void Start()

@@ -29,16 +29,22 @@ public class Main : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI _scoreText;
 
-    [SerializeField]
+	[SerializeField]
     private GameObject _birdPrefab;
 
-    [SerializeField]
+	[SerializeField]
+	private GameObject _airBalloonPrefab;
+
+	[SerializeField]
     private string[] _lives;
 
     [SerializeField]
     private GameObject _birdPool;
 
-    [SerializeField]
+	[SerializeField]
+	private GameObject _airBalloonPool;
+
+	[SerializeField]
     private Transform _grandpaTransform;
 
 	[SerializeField]
@@ -47,14 +53,17 @@ public class Main : MonoBehaviour
 	[SerializeField]
 	private AnimationCurve _birdVelocityIncrease;
 
-	private bool _isGameOver = false;
+    [SerializeField]
+    [RangeAttribute(0, 100)]
+    private int _percentageBalloons = 8;
+
+    private bool _isGameOver = false;
     private bool _isGamePaused = false;
     private float _timeSinceLastSpawn;
     private List<GameObject> _birds = new List<GameObject>();
     private int _numLives;
     private int _score = 0;
     private Camera _camera;
-    private int _numBirdsSpawned = 0;
 	private float _topOfScreen;
     float _screenWidth;
     float _screenHeight;
@@ -95,10 +104,18 @@ public class Main : MonoBehaviour
 
             if (_timeSinceLastSpawn > SecondsBetweenSpawns)
             {
-                SpawnBird();
+                // Roughly 5% of the time, spawn a balloon instead
+                if (Random.Range(0f, 100f) < _percentageBalloons)
+                {
+                    SpawnBalloon();
+                }
+                else
+                {
+                    SpawnBird();
+                }
                 _timeSinceLastSpawn = 0f;
                 SecondsBetweenSpawns = _spawnSpeedIncrease.Evaluate(Time.timeSinceLevelLoad / 60);
-			}
+            }
         }
     }
 
@@ -162,44 +179,70 @@ public class Main : MonoBehaviour
     private void SpawnBird()
     {
         GameObject birdObj = GetOrCreatePooledBird();
-        if (birdObj == null)
-        {
-            return;
-        }
         birdObj.SetActive(true);
         float leftSideOfScreen = _camera.ViewportToWorldPoint(new Vector3(0, 0, 10)).x;
-        birdObj.transform.position = new Vector3(leftSideOfScreen, Random.Range(_grandpaTransform.position.y + 1.2f, _topOfScreen - 1f), -0.3f);
+        birdObj.transform.position = new Vector3(leftSideOfScreen - 1, Random.Range(_grandpaTransform.position.y + 1.2f, _topOfScreen - 1f), -0.3f);
         Bird bird = birdObj.GetComponent<Bird>();
         bird.Reset();
         Fly fly = birdObj.GetComponent<Fly>();
 		Velocity = _birdVelocityIncrease.Evaluate(Time.timeSinceLevelLoad / 60);
 		fly.Velocity = new Vector3(Velocity, 0, 0);
 
-        _numBirdsSpawned++;
-
 		BirdSpawned?.Invoke();
 	}
 
-    private GameObject GetOrCreatePooledBird()
-    {
-        GameObject newPooledBird = GetPooledBird();
-
-        if (newPooledBird == null)
-        {
-            newPooledBird = GameObject.Instantiate(_birdPrefab);
-            newPooledBird.transform.parent = _birdPool.transform;
-        }
-
-        return newPooledBird;
+	private void SpawnBalloon()
+	{
+        GameObject balloonObj = GetOrCreatePooledBalloon();
+        balloonObj.SetActive(true);
+        float leftSideOfScreen = _camera.ViewportToWorldPoint(new Vector3(0, 0, 10)).x;
+		balloonObj.transform.position = new Vector3(leftSideOfScreen - 1, Random.Range(_grandpaTransform.position.y +2f, _topOfScreen + 0.2f), 0.5f); // higher up and further back than the birds
+		balloonObj.transform.parent = _airBalloonPool.transform;
     }
 
-    private GameObject GetPooledBird()
+    private GameObject GetOrCreatePooledBalloon()
     {
-        foreach (Bird b in _birdPool.GetComponentsInChildren<Bird>(true))
+        GameObject newBalloon = GetPooledObject(typeof(Balloon), _airBalloonPool);
+
+        if (newBalloon == null)
         {
-            if (!b.gameObject.activeSelf)
+            newBalloon = GameObject.Instantiate(_airBalloonPrefab);
+            newBalloon.transform.parent = _airBalloonPool.transform;
+        }
+        else
+        {
+            Balloon balloon = newBalloon.GetComponent<Balloon>();
+            balloon.Reset();
+        }
+
+        return newBalloon;
+    }
+
+    private GameObject GetOrCreatePooledBird()
+    {
+        GameObject newBird = GetPooledObject(typeof(Bird), _birdPool);
+
+        if (newBird == null)
+        {
+            newBird = GameObject.Instantiate(_birdPrefab);
+            newBird.transform.parent = _birdPrefab.transform;
+        }
+        else
+        {
+            Bird bird = newBird.GetComponent<Bird>();
+            bird.Reset();
+        }
+
+        return newBird;
+    }
+
+    private GameObject GetPooledObject(System.Type t, GameObject parent)
+    {
+        foreach (var obj in parent.GetComponentsInChildren(t, true))
+        {
+            if (!obj.gameObject.activeSelf)
             {
-                return b.gameObject;
+                return obj.gameObject;
             }
         }
 
