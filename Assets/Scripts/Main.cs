@@ -82,9 +82,7 @@ public class Main : MonoBehaviour
         _screenHeight = Screen.height;
 
         _numLives = _lives.Length - 1;
-
-		SpawnBird();
-
+        _timeSinceLastSpawn = 1000; // arbitrarily large so we generate one on first update
 		// Stop screen dimming
 		Screen.sleepTimeout = SleepTimeout.NeverSleep;
 	}

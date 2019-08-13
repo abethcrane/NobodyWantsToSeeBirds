@@ -203,7 +203,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4154314740396330, guid: 42bb8b6193ed44b3996cd98a1071545c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.05
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 4154314740396330, guid: 42bb8b6193ed44b3996cd98a1071545c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -325,7 +325,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1e-45, y: 7.1e-44, z: 0, w: 8.302592e+37}
+  m_BoundingSphereOverride: {x: NaN, y: NaN, z: NaN, w: NaN}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -1511,26 +1511,26 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
-      value: 1.799881
-      inSlope: -0.62917304
-      outSlope: -0.62917304
+      time: -0.004966736
+      value: 1.689269
+      inSlope: -0.5895307
+      outSlope: -0.5895307
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 1.2568378
-      value: 1.0091125
-      inSlope: -0.45637536
-      outSlope: -0.45637536
+      time: 1.2393461
+      value: 0.9557083
+      inSlope: -0.4322219
+      outSlope: -0.4322219
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 1.9965785
-      value: 0.7993386
+      time: 2.0024073
+      value: 0.7459328
       inSlope: -0.15424253
       outSlope: -0.15424253
       tangentMode: 0
@@ -1538,14 +1538,14 @@ MonoBehaviour:
       inWeight: 0.40384817
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 2.748428
-      value: 0.70087206
-      inSlope: -0.016756449
-      outSlope: -0.016756449
+      time: 2.678787
+      value: 0.60016406
+      inSlope: -0.21270049
+      outSlope: -0.21270049
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.32104218
-      outWeight: 0.33333334
+      outWeight: 0.5468076
     - serializedVersion: 3
       time: 3.215758
       value: 0.51779497
@@ -1580,8 +1580,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
-      value: 1.5523987
+      time: -0.009796143
+      value: 1.9993591
       inSlope: -0.07315803
       outSlope: -0.07315803
       tangentMode: 0
@@ -1589,7 +1589,7 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0.22381128
     - serializedVersion: 3
-      time: 1.0083679
+      time: 0.95439756
       value: 5.25368
       inSlope: 3.3634639
       outSlope: 3.3634639
@@ -1607,8 +1607,8 @@ MonoBehaviour:
       inWeight: 0.29471684
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 4.960144
-      value: 9.043053
+      time: 4.9404907
+      value: 9.978593
       inSlope: 0.062885754
       outSlope: 0.062885754
       tangentMode: 0
@@ -2347,6 +2347,102 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1335216100}
+    - target: {fileID: 0}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1335216100}
+    - target: {fileID: 0}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1390343127}
+    - target: {fileID: 0}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Play
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1335216100}
+    - target: {fileID: 4456747763427900736, guid: 3bde48c52d4cc4a77b2366a97560483d,
+        type: 3}
+      propertyPath: m_Name
+      value: UI-Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 4456747763914021371, guid: 3bde48c52d4cc4a77b2366a97560483d,
+        type: 3}
+      propertyPath: m_text
+      value: 'Lives: 4 <sprite name="smilingFace">'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4456747763914021371, guid: 3bde48c52d4cc4a77b2366a97560483d,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4456747763914021371, guid: 3bde48c52d4cc4a77b2366a97560483d,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4456747763914021371, guid: 3bde48c52d4cc4a77b2366a97560483d,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4456747762877671667, guid: 3bde48c52d4cc4a77b2366a97560483d,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4456747762877671667, guid: 3bde48c52d4cc4a77b2366a97560483d,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4456747762877671667, guid: 3bde48c52d4cc4a77b2366a97560483d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4456747762877671667, guid: 3bde48c52d4cc4a77b2366a97560483d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4456747762877671667, guid: 3bde48c52d4cc4a77b2366a97560483d,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4456747762877671667, guid: 3bde48c52d4cc4a77b2366a97560483d,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4456747762877671666, guid: 3bde48c52d4cc4a77b2366a97560483d,
+        type: 3}
+      propertyPath: m_subTextObjects.Array.data[1]
+      value: 
+      objectReference: {fileID: 1400299011}
     - target: {fileID: 4059476012466715362, guid: 3bde48c52d4cc4a77b2366a97560483d,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -2476,67 +2572,6 @@ PrefabInstance:
         type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1335216100}
-    - target: {fileID: 0}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1335216100}
-    - target: {fileID: 0}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1390343127}
-    - target: {fileID: 0}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: Play
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1335216100}
-    - target: {fileID: 4456747763427900736, guid: 3bde48c52d4cc4a77b2366a97560483d,
-        type: 3}
-      propertyPath: m_Name
-      value: UI-Canvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 4456747763914021371, guid: 3bde48c52d4cc4a77b2366a97560483d,
-        type: 3}
-      propertyPath: m_text
-      value: 'Lives: 4 <sprite name="smilingFace">'
-      objectReference: {fileID: 0}
-    - target: {fileID: 4456747763914021371, guid: 3bde48c52d4cc4a77b2366a97560483d,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4456747763914021371, guid: 3bde48c52d4cc4a77b2366a97560483d,
-        type: 3}
-      propertyPath: m_textInfo.spaceCount
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4456747763914021371, guid: 3bde48c52d4cc4a77b2366a97560483d,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4456747763427900740, guid: 3bde48c52d4cc4a77b2366a97560483d,
         type: 3}
@@ -2708,36 +2743,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4456747762877671667, guid: 3bde48c52d4cc4a77b2366a97560483d,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4456747762877671667, guid: 3bde48c52d4cc4a77b2366a97560483d,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4456747762877671667, guid: 3bde48c52d4cc4a77b2366a97560483d,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4456747762877671667, guid: 3bde48c52d4cc4a77b2366a97560483d,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4456747762877671667, guid: 3bde48c52d4cc4a77b2366a97560483d,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4456747762877671667, guid: 3bde48c52d4cc4a77b2366a97560483d,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4456747763914021124, guid: 3bde48c52d4cc4a77b2366a97560483d,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -2768,11 +2773,6 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4456747762877671666, guid: 3bde48c52d4cc4a77b2366a97560483d,
-        type: 3}
-      propertyPath: m_subTextObjects.Array.data[1]
-      value: 
-      objectReference: {fileID: 1400299011}
     - target: {fileID: 2431228756363504324, guid: 3bde48c52d4cc4a77b2366a97560483d,
         type: 3}
       propertyPath: AudioSource
