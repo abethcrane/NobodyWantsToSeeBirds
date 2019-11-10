@@ -11,13 +11,15 @@ public class FullscreenSprite : MonoBehaviour
     [SerializeField]
     private AnchorPoint _anchorPos;
 
-    SpriteRenderer _spriteRenderer;
-    Camera _camera;
-    float _screenWidth;
-    float _screenHeight;
+    private SpriteRenderer _spriteRenderer;
+    private Camera _camera;
+    private float _screenWidth;
+    private float _screenHeight;
+    private float _initialZPos;
 
     void Awake()
-    {   
+    {
+         _initialZPos = transform.position.z;
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _camera = Camera.main;
         _screenWidth = Screen.width;
@@ -58,6 +60,6 @@ public class FullscreenSprite : MonoBehaviour
 
         Debug.Log(gameObject.name + " - " + transform.position);
 
-        transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+        transform.position = new Vector3(transform.position.x, transform.position.y, _initialZPos);
     }
 }

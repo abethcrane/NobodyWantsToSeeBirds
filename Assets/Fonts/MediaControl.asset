@@ -279,7 +279,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: MediaControlsIcons Material
   m_Shader: {fileID: 4800000, guid: 68e6db2ebdc24f95958faec2be5558d6, type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -343,6 +343,7 @@ Material:
     - _ScaleX: 1
     - _ScaleY: 1
     - _ShaderFlags: 0
+    - _Sharpness: 0
     - _SpecularPower: 2
     - _Stencil: 0
     - _StencilComp: 8
