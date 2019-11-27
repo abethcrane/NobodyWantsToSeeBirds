@@ -35,16 +35,11 @@ public class Bird : MonoBehaviour
     {
         if (Main.Instance.IsGameActive)
         {
-            _isVisibleToGrampa = !_isVisibleToGrampa;
-            _anim.SetBool("IsVisible", _isVisibleToGrampa);
-
             if (_isVisibleToGrampa)
             {
                 _cubeDisappear.Play();
-            }
-            else
-            {
-                _cubeAppear.Play();
+                _isVisibleToGrampa = false;
+                _anim.SetBool("IsVisible", false);
             }
         }
     }
