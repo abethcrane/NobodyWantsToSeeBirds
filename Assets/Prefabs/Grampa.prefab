@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 649422368259039042}
   - component: {fileID: 649422368259039043}
   - component: {fileID: 649422368259039040}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: VisionTriangle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

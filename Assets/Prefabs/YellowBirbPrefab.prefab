@@ -1017,7 +1017,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3551271476832111481}
   - component: {fileID: 9125614401732623878}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bird-Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

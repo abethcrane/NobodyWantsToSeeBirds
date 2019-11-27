@@ -120,7 +120,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Color.r
-    path: AirBalloonSprite/AirBalloon-Sprite2
+    path: AirBalloon-Sprite2
     classID: 212
     script: {fileID: 0}
   - curve:
@@ -148,7 +148,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Color.g
-    path: AirBalloonSprite/AirBalloon-Sprite2
+    path: AirBalloon-Sprite2
     classID: 212
     script: {fileID: 0}
   - curve:
@@ -176,7 +176,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Color.b
-    path: AirBalloonSprite/AirBalloon-Sprite2
+    path: AirBalloon-Sprite2
     classID: 212
     script: {fileID: 0}
   - curve:
@@ -222,7 +222,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Color.a
-    path: AirBalloonSprite/AirBalloon-Sprite2
+    path: AirBalloon-Sprite2
     classID: 212
     script: {fileID: 0}
   - curve:
@@ -387,7 +387,7 @@ AnimationClip:
       value: {fileID: -4630672374155955373, guid: a0fe272d291a043e2807c80f95e3ebb7,
         type: 3}
     attribute: m_Sprite
-    path: AirBalloonSprite/AirBalloon-Sprite2
+    path: AirBalloon-Sprite2
     classID: 212
     script: {fileID: 0}
   m_SampleRate: 60
@@ -739,7 +739,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Color.r
-    path: AirBalloonSprite/AirBalloon-Sprite2
+    path: AirBalloon-Sprite2
     classID: 212
     script: {fileID: 0}
   - curve:
@@ -767,7 +767,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Color.g
-    path: AirBalloonSprite/AirBalloon-Sprite2
+    path: AirBalloon-Sprite2
     classID: 212
     script: {fileID: 0}
   - curve:
@@ -795,7 +795,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Color.b
-    path: AirBalloonSprite/AirBalloon-Sprite2
+    path: AirBalloon-Sprite2
     classID: 212
     script: {fileID: 0}
   - curve:
@@ -841,7 +841,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Color.a
-    path: AirBalloonSprite/AirBalloon-Sprite2
+    path: AirBalloon-Sprite2
     classID: 212
     script: {fileID: 0}
   - curve:

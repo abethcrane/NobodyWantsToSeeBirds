@@ -4,10 +4,10 @@
 public class Balloon : MonoBehaviour
 {
     [SerializeField]
-    private Transform _child;
+    private Transform _child = null;
 
     private Animator _anim;
-    private bool _hasLostLife = false;
+    private bool _isPopped = false;
     private OnScreenVisibilityEventer _sprite;
 
     public void Reset()
@@ -19,7 +19,7 @@ public class Balloon : MonoBehaviour
         transform.localPosition = Vector3.zero;
         transform.rotation = Quaternion.identity;
         _child.transform.localPosition = Vector3.zero;
-        _hasLostLife = false;
+        _isPopped = false;
 
         Fly fly = GetComponent<Fly>();
         if (fly != null)
@@ -37,16 +37,25 @@ public class Balloon : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (Main.Instance.IsGameActive && !_hasLostLife)
+        if (Main.Instance.IsGameActive && !_isPopped)
         {
-            Main.Instance.LoseLife();
-            _hasLostLife = true;
             _anim.SetBool("IsPopped", true);
+            _isPopped = true;
         }
     }
 
     private void OnBecameInvisible()
     {
         gameObject.SetActive(false);
+    }
+
+    // When it hits the ground we make an explosion and that's what loses us a life
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (_isPopped)
+        {
+            Debug.LogWarning("LOSING balloon life to "+ collision.name);
+            Main.Instance.LoseLife();
+        }
     }
 }
