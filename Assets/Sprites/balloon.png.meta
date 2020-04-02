@@ -14,6 +14,9 @@ TextureImporter:
   - first:
       213: -4630672374155955373
     second: balloon_pop3
+  - first:
+      213: 3499272959063439820
+    second: balloon_0
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -101,12 +104,12 @@ TextureImporter:
       name: balloon
       rect:
         serializedVersion: 2
-        x: 178
-        y: 264
-        width: 842
-        height: 1148
+        x: 240
+        y: 331
+        width: 752
+        height: 1051
       alignment: 9
-      pivot: {x: 0.21661852, y: 0.87165064}
+      pivot: {x: 0.41353387, y: 0.0030515837}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -123,11 +126,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1063
-        y: 285
-        width: 777
-        height: 1131
+        y: 314
+        width: 765
+        height: 1065
       alignment: 9
-      pivot: {x: 0.16957766, y: 0.8635029}
+      pivot: {x: 0.41826046, y: 0.0023754137}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -143,12 +146,12 @@ TextureImporter:
       name: balloon_pop2
       rect:
         serializedVersion: 2
-        x: 1901
-        y: 311
+        x: 1904
+        y: 373
         width: 751
-        height: 1015
+        height: 949
       alignment: 9
-      pivot: {x: 0.15687367, y: 0.8572635}
+      pivot: {x: 0.5117548, y: 0.0022844449}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -165,11 +168,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2717
-        y: 372
-        width: 911
-        height: 911
+        y: 459
+        width: 828
+        height: 783
       alignment: 9
-      pivot: {x: 0.121381305, y: 0.7859893}
+      pivot: {x: 0.4716903, y: 0.0026574458}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -177,6 +180,27 @@ TextureImporter:
       bones: []
       spriteID: 2523675183c264a5494d57a645aae8f8
       internalID: -4630672374155955373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: balloon_0
+      rect:
+        serializedVersion: 2
+        x: 1890
+        y: 433
+        width: 87
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 627c981191acd4cb1bbc073608ef762b
+      internalID: 3499272959063439820
       vertices: []
       indices: 
       edges: []
