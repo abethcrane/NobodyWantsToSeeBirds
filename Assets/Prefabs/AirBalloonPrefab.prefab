@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4154314740396330}
   - component: {fileID: 114568310596185582}
   - component: {fileID: 7096866147361084403}
+  - component: {fileID: 8065286089215254281}
   - component: {fileID: 95135834772502526}
   - component: {fileID: 50425003545079664}
   m_Layer: 0
@@ -62,6 +63,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _child: {fileID: 4186986360978167484}
+--- !u!114 &8065286089215254281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1217480892379338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 671c3fa7635da4a299fa0c879a13c5a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &95135834772502526
 Animator:
   serializedVersion: 3
@@ -385,6 +398,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4186986360978167484}
   - component: {fileID: 4243836136001947091}
+  - component: {fileID: 2337725691766920142}
   m_Layer: 0
   m_Name: AirBalloonSprite
   m_TagString: Untagged
@@ -455,3 +469,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2337725691766920142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3782311991068592156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8a10bf13cd5d4e808f541a55dd6940a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -9,7 +9,7 @@ public class Balloon : MonoBehaviour
     private Animator _anim;
     private bool _isPopped = false;
     private bool _hasLostLife = false;
-    private OnScreenVisibilityEventer _sprite;
+    private VisibilityManager _visibilityManager;
 
     public void Reset()
     {
@@ -33,8 +33,8 @@ public class Balloon : MonoBehaviour
     private void Start()
     {
         _anim = GetComponentInChildren<Animator>();
-        _sprite = GetComponentInChildren<OnScreenVisibilityEventer>();
-        _sprite.BecameInvisible += OnBecameInvisible;
+        _visibilityManager = GetComponent<VisibilityManager>();
+        _visibilityManager.ObjectOffScreen += OnOffScreen;
     }
 
     private void OnMouseDown()
@@ -46,7 +46,7 @@ public class Balloon : MonoBehaviour
         }
     }
 
-    private void OnBecameInvisible()
+    private void OnOffScreen()
     {
         gameObject.SetActive(false);
     }

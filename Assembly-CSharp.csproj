@@ -63,13 +63,14 @@
      <Compile Include="Assets\Scripts\Grampa.cs" />
      <Compile Include="Assets\Scripts\Main.cs" />
      <Compile Include="Assets\Scripts\MusicManager.cs" />
-     <Compile Include="Assets\Scripts\OnScreenVisibilityEventer.cs" />
      <Compile Include="Assets\Scripts\SceneLoader.cs" />
      <Compile Include="Assets\Scripts\SuperBlur.cs" />
      <Compile Include="Assets\Scripts\SuperBlurBase.cs" />
      <Compile Include="Assets\Scripts\SuperBlurFast.cs" />
      <Compile Include="Assets\Scripts\TimeDisplay.cs" />
      <Compile Include="Assets\Scripts\ToggleButtonSwitcher.cs" />
+     <Compile Include="Assets\Scripts\VisibilityEventer.cs" />
+     <Compile Include="Assets\Scripts\VisibilityManager.cs" />
      <None Include="Assets\Shaders\invisibilityCloak.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
