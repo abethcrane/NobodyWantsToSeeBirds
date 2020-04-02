@@ -67,6 +67,7 @@ public class Main : MonoBehaviour
     private int _numLives;
     private int _score = 0;
     private Camera _camera;
+    private Animator _cameraAnim;
 	private float _topOfScreen;
     private float _screenWidth;
     private float _screenHeight;
@@ -86,6 +87,7 @@ public class Main : MonoBehaviour
     {
         Instance = this;
         _camera = Camera.main;
+        _cameraAnim = GetComponent<Animator>();
         UpdateScreenDimensions();
 
         _numLives = _lives.Length - 1;
@@ -217,6 +219,12 @@ public class Main : MonoBehaviour
         {
             EndGame();
         }
+    }
+
+    public void Explosion()
+    {
+        _cameraAnim.SetTrigger("Shake");
+        LoseLife();
     }
 
     public void TogglePause()

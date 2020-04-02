@@ -8,6 +8,7 @@ public class Balloon : MonoBehaviour
 
     private Animator _anim;
     private bool _isPopped = false;
+    private bool _hasLostLife = false;
     private OnScreenVisibilityEventer _sprite;
 
     public void Reset()
@@ -20,6 +21,7 @@ public class Balloon : MonoBehaviour
         transform.rotation = Quaternion.identity;
         _child.transform.localPosition = Vector3.zero;
         _isPopped = false;
+        _hasLostLife = false;
 
         Fly fly = GetComponent<Fly>();
         if (fly != null)
@@ -52,10 +54,10 @@ public class Balloon : MonoBehaviour
     // When it hits the ground we make an explosion and that's what loses us a life
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (_isPopped)
+        if (_isPopped && !_hasLostLife)
         {
-            Debug.LogWarning("LOSING balloon life to "+ collision.name);
-            Main.Instance.LoseLife();
+            Main.Instance.Explosion();
+            _hasLostLife = true;
         }
     }
 }
