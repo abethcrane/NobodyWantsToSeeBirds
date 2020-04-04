@@ -3,10 +3,10 @@
 public class Bird : MonoBehaviour
 {
     [SerializeField]
-    private AudioSource _cubeAppear;
+    private AudioSource _censor = null;
 
     [SerializeField]
-    private AudioSource _cubeDisappear;
+    private AudioSource _uncensor = null;
 
     private Animator _anim;
     private bool _isVisibleToGrampa = true;
@@ -34,9 +34,11 @@ public class Bird : MonoBehaviour
     {
         if (Main.Instance.IsGameActive)
         {
+            // We used to have an else here, where you'd play _uncensor
+            // And set it to be visible to grampa again
             if (_isVisibleToGrampa)
             {
-                _cubeDisappear.Play();
+                _censor?.Play();
                 _isVisibleToGrampa = false;
                 _anim.SetBool("IsVisible", false);
             }
@@ -45,12 +47,10 @@ public class Bird : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        WhileInLineOfSight();
-    }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        WhileInLineOfSight();
+        if (collision.gameObject.layer == LayerMask.NameToLayer("VisionCone"))
+        {
+            WhileInLineOfSight();
+        }
     }
 
     private void WhileInLineOfSight()

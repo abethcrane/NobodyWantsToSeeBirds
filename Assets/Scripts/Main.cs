@@ -12,8 +12,10 @@ public class Main : MonoBehaviour
     public event System.Action LostLife;
     public event System.Action GameOver;
 	public event System.Action BirdSpawned;
+	public event System.Action<bool> PauseToggled;
 
 	public static Main Instance;
+
     public float SecondsBetweenSpawns = 3f; // Used only as a visual for debugging
     public float Velocity = 1f;
 
@@ -79,9 +81,9 @@ public class Main : MonoBehaviour
     // Maybe I need an animation curve for spawnProbability too, like I have for seconds between? For now, the aim is to get to 0.9 after 30 seconds, so that's 1/162
     // SO yeah, let's take the value in the secondsBetween, multiple by 180
 
-    public float TimeFactor => _isGamePaused ? 0f : 1f;
-
     public bool IsGameActive => !_isGameOver && !_isGamePaused;
+    public float SecondsOfGamePlay { get; private set; } = 0f;
+    public float MinutesOfGamePlay => SecondsOfGamePlay / 60;
 
     private void Awake()
     {
@@ -117,15 +119,17 @@ public class Main : MonoBehaviour
     {
         if (IsGameActive)
         {
+            SecondsOfGamePlay += Time.deltaTime;
+
             if (_screenHeight != Screen.height || _screenWidth != Screen.width)
             {
                 UpdateScreenDimensions();
             }
 
 
-            float secondsBetweenSpawns = _spawnSpeedIncrease.Evaluate(Time.timeSinceLevelLoad / 60);
+            float secondsBetweenSpawns = _spawnSpeedIncrease.Evaluate(MinutesOfGamePlay);
             _spawnProbability = 100 / (SecondsBetweenSpawns * (1 / Time.deltaTime));
-            Debug.Log("spawn prob: " + _spawnProbability + "deltaTime: " + Time.deltaTime);
+            //Debug.Log("spawn prob: " + _spawnProbability + " deltaTime: " + Time.deltaTime);
 
             // Spawn something this frame!
             if (Random.Range(0f, 100f) < _spawnProbability)
@@ -230,6 +234,12 @@ public class Main : MonoBehaviour
     public void TogglePause()
     {
         _isGamePaused = !_isGamePaused;
+        PauseToggled?.Invoke(_isGamePaused);
+
+        // This blogpost indicated this would be the best thing to do: https://gamedevbeginner.com/the-right-way-to-pause-the-game-in-unity/
+        // But it doesn't seem like time.timeScale is affected by this.
+        // So I'm using it for pausing the bird's velocity but managing my own SecondsOfGamePlay 
+        Time.timeScale = _isGamePaused ? 0 : 1f;
     }
 
 	public void ToggleAudio()
@@ -246,7 +256,7 @@ public class Main : MonoBehaviour
         Bird bird = birdObj.GetComponent<Bird>();
         bird.Reset();
         Fly fly = birdObj.GetComponent<Fly>();
-		Velocity = _birdVelocityIncrease.Evaluate(Time.timeSinceLevelLoad / 60);
+		Velocity = _birdVelocityIncrease.Evaluate(MinutesOfGamePlay);
 		fly.Velocity = new Vector3(Velocity, 0, 0);
 
 		BirdSpawned?.Invoke();

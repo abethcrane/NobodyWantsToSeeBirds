@@ -14,7 +14,7 @@ public class TimeDisplay : MonoBehaviour
     {
         if (Main.Instance.IsGameActive)
         {
-            _text.text = "Seconds: " + Time.timeSinceLevelLoad.ToString("0.0");
+            _text.text = "Seconds: " + Main.Instance.SecondsOfGamePlay.ToString("0.0");
         }
     }
 }

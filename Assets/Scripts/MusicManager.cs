@@ -19,7 +19,7 @@ public class MusicManager : MonoBehaviour
     {
         _themeMusicIntro.Play();
         _themeMusicLoop.PlayDelayed(_themeMusicIntro.clip.length);
-		_themeMusicLoop.pitch = _musicPitchIncrease.Evaluate(Time.timeSinceLevelLoad / 60);
+		_themeMusicLoop.pitch = _musicPitchIncrease.Evaluate(0);
 	}
 
     private void Start()
@@ -30,7 +30,7 @@ public class MusicManager : MonoBehaviour
 
     private void OnBirdSpawned()
     {
-		_themeMusicLoop.pitch = _musicPitchIncrease.Evaluate(Time.timeSinceLevelLoad / 60);
+		_themeMusicLoop.pitch = _musicPitchIncrease.Evaluate(Main.Instance.MinutesOfGamePlay);
     }
 
     private void OnGameOver()

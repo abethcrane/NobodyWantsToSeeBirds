@@ -17,6 +17,7 @@ public class Balloon : MonoBehaviour
         {
             _anim.SetBool("IsPopped", false);
         }
+
         transform.localPosition = Vector3.zero;
         transform.rotation = Quaternion.identity;
         _child.transform.localPosition = Vector3.zero;
@@ -33,8 +34,11 @@ public class Balloon : MonoBehaviour
     private void Start()
     {
         _anim = GetComponentInChildren<Animator>();
+
         _visibilityManager = GetComponent<VisibilityManager>();
         _visibilityManager.ObjectOffScreen += OnOffScreen;
+
+        Main.Instance.PauseToggled += OnPauseToggled;
     }
 
     private void OnMouseDown()
@@ -59,5 +63,9 @@ public class Balloon : MonoBehaviour
             Main.Instance.Explosion();
             _hasLostLife = true;
         }
+    }
+
+    private void OnPauseToggled(bool isPaused) {
+        _anim.enabled = !isPaused;
     }
 }

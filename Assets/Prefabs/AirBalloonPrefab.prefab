@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 4154314740396330}
   - component: {fileID: 114568310596185582}
   - component: {fileID: 7096866147361084403}
-  - component: {fileID: 8065286089215254281}
   - component: {fileID: 95135834772502526}
   - component: {fileID: 50425003545079664}
+  - component: {fileID: 4690331325164469567}
   m_Layer: 0
   m_Name: AirBalloonPrefab
   m_TagString: Untagged
@@ -63,18 +63,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _child: {fileID: 4186986360978167484}
---- !u!114 &8065286089215254281
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1217480892379338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 671c3fa7635da4a299fa0c879a13c5a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &95135834772502526
 Animator:
   serializedVersion: 3
@@ -87,7 +75,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 46d62876fb1604aeba344e3a14b093e2, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
@@ -115,6 +103,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &4690331325164469567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1217480892379338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 671c3fa7635da4a299fa0c879a13c5a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1605035992506073971
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,7 +141,7 @@ Transform:
   m_GameObject: {fileID: 1605035992506073971}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.05, y: 1.05, z: 1.05}
   m_Children: []
   m_Father: {fileID: 4154314740396330}
   m_RootOrder: 1
@@ -398,7 +398,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4186986360978167484}
   - component: {fileID: 4243836136001947091}
-  - component: {fileID: 2337725691766920142}
   m_Layer: 0
   m_Name: AirBalloonSprite
   m_TagString: Untagged
@@ -469,15 +468,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2337725691766920142
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3782311991068592156}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8a10bf13cd5d4e808f541a55dd6940a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

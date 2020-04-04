@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 4154314740396330}
   - component: {fileID: 114568310596185582}
   - component: {fileID: 114540800016730738}
-  - component: {fileID: 448956867024870494}
   - component: {fileID: 95135834772502526}
   - component: {fileID: 50425003545079664}
   - component: {fileID: 4060452704235322786}
   - component: {fileID: 2443085907517408430}
+  - component: {fileID: 5180625370882165222}
   m_Layer: 0
   m_Name: YellowBirbPrefab
   m_TagString: Untagged
@@ -63,20 +63,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ba0632d10ac746feafb51e76566da83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cubeAppear: {fileID: 4060452704235322786}
-  _cubeDisappear: {fileID: 2443085907517408430}
---- !u!114 &448956867024870494
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1217480892379338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 671c3fa7635da4a299fa0c879a13c5a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  _censor: {fileID: 4060452704235322786}
+  _uncensor: {fileID: 2443085907517408430}
 --- !u!95 &95135834772502526
 Animator:
   serializedVersion: 3
@@ -89,7 +77,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 190e3c96318e64803a08da9706e8bedd, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
@@ -309,6 +297,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5180625370882165222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1217480892379338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 671c3fa7635da4a299fa0c879a13c5a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1458882594191348
 GameObject:
   m_ObjectHideFlags: 0
@@ -663,7 +663,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5730927262393146935}
   - component: {fileID: 2537870378638125319}
-  - component: {fileID: 455541004467356309}
   m_Layer: 0
   m_Name: Sprite2
   m_TagString: Untagged
@@ -736,18 +735,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &455541004467356309
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4781607749300778830}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8a10bf13cd5d4e808f541a55dd6940a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &9000074847709212535
 GameObject:
   m_ObjectHideFlags: 0
@@ -758,7 +745,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6339849369160450958}
   - component: {fileID: 1985224203310118}
-  - component: {fileID: 108726274814162200}
   m_Layer: 0
   m_Name: Sprite1
   m_TagString: Untagged
@@ -831,15 +817,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &108726274814162200
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9000074847709212535}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8a10bf13cd5d4e808f541a55dd6940a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

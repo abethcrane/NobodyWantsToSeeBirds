@@ -61,7 +61,7 @@ public class FullscreenSprite : MonoBehaviour
     {
         // Calculate the scale we need to make the sprite as wide as the screen
         float spriteBoundsWidth = _spriteRenderer.sprite.bounds.size.x;
-        float worldScreenHeight = Camera.main.orthographicSize * 2f;
+        float worldScreenHeight = _camera.orthographicSize * 2f;
         float worldScreenWidth = worldScreenHeight / _screenHeight * _screenWidth;
         float newScale = worldScreenWidth / spriteBoundsWidth;
 
