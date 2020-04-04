@@ -50,3 +50,6 @@ TagManager:
   - name: Human
     uniqueID: 4286959877
     locked: 0
+  - name: Bird
+    uniqueID: 3628030455
+    locked: 0

@@ -182,11 +182,6 @@ public class Main : MonoBehaviour
     {
         // Reload the scene, but that doesn't reload this script
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        foreach (GameObject bird in _birds)
-        {
-            GameObject.Destroy(bird);
-        }
-        _birds.Clear();
 
         _timeSinceLastSpawn = 0f;
 
@@ -259,6 +254,7 @@ public class Main : MonoBehaviour
 		Velocity = _birdVelocityIncrease.Evaluate(MinutesOfGamePlay);
 		fly.Velocity = new Vector3(Velocity, 0, 0);
 
+
 		BirdSpawned?.Invoke();
 	}
 
@@ -297,11 +293,8 @@ public class Main : MonoBehaviour
         {
             newBird = GameObject.Instantiate(_birdPrefab);
             newBird.transform.parent = _birdPool.transform;
-        }
-        else
-        {
             Bird bird = newBird.GetComponent<Bird>();
-            bird.Reset();
+            bird.SortOrder = _birdPool.transform.childCount;
         }
 
         return newBird;
