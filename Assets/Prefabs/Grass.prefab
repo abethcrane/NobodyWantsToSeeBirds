@@ -489,7 +489,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _anchorPos: 1
   _minHeight: 0.3
-  _maxHeight: 1
+  _maxHeight: 1.5
 --- !u!1001 &8853726431542718892
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -561,16 +561,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 649422368259039041, guid: 530dd0e6d4fa24c24bfea05b10b58f32,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 8.63
-      objectReference: {fileID: 0}
-    - target: {fileID: 649422368259039041, guid: 530dd0e6d4fa24c24bfea05b10b58f32,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 11.94
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 530dd0e6d4fa24c24bfea05b10b58f32, type: 3}

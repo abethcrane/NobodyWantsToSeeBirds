@@ -95,4 +95,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _anchorPos: 0
   _minHeight: 0.7
-  _maxHeight: 1
+  _maxHeight: 2

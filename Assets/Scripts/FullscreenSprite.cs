@@ -16,7 +16,7 @@ public class FullscreenSprite : MonoBehaviour
     private float _minHeight = 0.5f;
 
     [SerializeField]
-    [Range(0,1)]
+    [Range(0,2)]
     private float _maxHeight = 1f;
 
     private SpriteRenderer _spriteRenderer;
@@ -72,13 +72,13 @@ public class FullscreenSprite : MonoBehaviour
         float newSpriteHeight = spriteBoundsHeight * newScale;
         float newSpritePercentOfScreenHeight = newSpriteHeight / worldScreenHeight;
 
-        Debug.Log(string.Format("Pre clamp: height: {0}, percent of screen: {1}, scale:{2}", newSpriteHeight, newSpritePercentOfScreenHeight, newScale));
+        //Debug.Log(string.Format("Pre clamp: height: {0}, percent of screen: {1}, scale:{2}", newSpriteHeight, newSpritePercentOfScreenHeight, newScale));
 
         newSpritePercentOfScreenHeight = Mathf.Clamp(newSpritePercentOfScreenHeight, _minHeight, _maxHeight);
         newSpriteHeight = newSpritePercentOfScreenHeight * worldScreenHeight;
         newScale =  newSpriteHeight / spriteBoundsHeight;
 
-        Debug.Log(string.Format("Post clamp: height: {0}, percent of screen: {1}, scale:{2}", newSpriteHeight, newSpritePercentOfScreenHeight, newScale));
+        //Debug.Log(string.Format("Post clamp: height: {0}, percent of screen: {1}, scale:{2}", newSpriteHeight, newSpritePercentOfScreenHeight, newScale));
 
         // Apply the new scale (evenly to x and y to maintain aspect ratio)
         transform.localScale = new Vector3(newScale, newScale, 1);

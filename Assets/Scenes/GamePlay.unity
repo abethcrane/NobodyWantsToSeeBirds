@@ -10591,6 +10591,16 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1213720720218690595, guid: 3bde48c52d4cc4a77b2366a97560483d,
+        type: 3}
+      propertyPath: m_ChildControlWidth
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 873511633850210593, guid: 3bde48c52d4cc4a77b2366a97560483d,
+        type: 3}
+      propertyPath: m_HorizontalFit
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4456747761965018006, guid: 3bde48c52d4cc4a77b2366a97560483d,
         type: 3}
       propertyPath: m_SizeDelta.x
@@ -10856,16 +10866,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8349101360927665901, guid: 01ef08f09bf1b47048e1242345c07c58,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 8.59
-      objectReference: {fileID: 0}
-    - target: {fileID: 8349101360927665901, guid: 01ef08f09bf1b47048e1242345c07c58,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 12.02
       objectReference: {fileID: 0}
     - target: {fileID: 8349101360943414830, guid: 01ef08f09bf1b47048e1242345c07c58,
         type: 3}
