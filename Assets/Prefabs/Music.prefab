@@ -303,6 +303,48 @@ MonoBehaviour:
   _holdMusic: {fileID: 5601182671094748505}
   _themeMusicIntro: {fileID: 5601182671393438336}
   _themeMusicLoop: {fileID: 5601182672609290819}
+  _musicPitchIncrease:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.98147964
+      inSlope: 0.04766387
+      outSlope: 0.04766387
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1.2421495
+      value: 1.0406853
+      inSlope: 0.04984988
+      outSlope: 0.04984988
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 2.0034952
+      value: 1.0803026
+      inSlope: 0.07925605
+      outSlope: 0.07925605
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.06687121
+    - serializedVersion: 3
+      time: 4.9950256
+      value: 1.6781464
+      inSlope: 0.593458
+      outSlope: 0.593458
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.036334254
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &5601182672609290816
 GameObject:
   m_ObjectHideFlags: 0
