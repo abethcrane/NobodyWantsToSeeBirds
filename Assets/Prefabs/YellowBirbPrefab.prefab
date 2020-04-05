@@ -65,6 +65,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _censor: {fileID: 4060452704235322786}
   _uncensor: {fileID: 2443085907517408430}
+  _sprites:
+  - {fileID: 1985224203310118}
+  - {fileID: 2537870378638125319}
+  SortOrder: 1
 --- !u!95 &95135834772502526
 Animator:
   serializedVersion: 3
