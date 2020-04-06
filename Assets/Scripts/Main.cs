@@ -55,9 +55,6 @@ public class Main : MonoBehaviour
 	[SerializeField]
 	private AnimationCurve _birdSpeedIncrease;
 
-	[SerializeField]
-	private AnimationCurve _spawnProbabilityPerFrame;
-
     [SerializeField]
     [RangeAttribute(0, 100)]
     private int _percentageBalloons = 8;
@@ -70,7 +67,6 @@ public class Main : MonoBehaviour
     private int _score = 0;
     private Camera _camera;
     private Animator _cameraAnim;
-	private float _topOfScreen;
     private float _screenWidth;
     private float _screenHeight;
     private float _minBirdYPos = 0;
@@ -80,6 +76,8 @@ public class Main : MonoBehaviour
     private float _spawnProbability = 1f/302f;
     // Maybe I need an animation curve for spawnProbability too, like I have for seconds between? For now, the aim is to get to 0.9 after 30 seconds, so that's 1/162
     // SO yeah, let's take the value in the secondsBetween, multiple by 180
+    private float _birdHeight = 1.5f; // This should be calculated from bird extents but *shrug*
+    private int _numSpawnSlots = 1;
 
     public bool IsGameActive => !_isGameOver && !_isGamePaused;
     public float SecondsOfGamePlay { get; private set; } = 0f;
@@ -126,42 +124,33 @@ public class Main : MonoBehaviour
                 UpdateScreenDimensions();
             }
 
-
             float secondsBetweenSpawns = _spawnSpeedIncrease.Evaluate(MinutesOfGamePlay);
             _spawnProbability = 100 / (SecondsBetweenSpawns * (1 / Time.deltaTime));
-            //Debug.Log("spawn prob: " + _spawnProbability + " deltaTime: " + Time.deltaTime);
 
-            // Spawn something this frame!
-            if (Random.Range(0f, 100f) < _spawnProbability)
+            float requiredSpawnProb = _spawnProbability / _numSpawnSlots;
+            float birdHeightRange =_maxBirdYPos - _minBirdYPos;
+            float balloonHeightRange =_maxBalloonYPos - _minBirdYPos;
+            for (int i = 0; i < _numSpawnSlots; i++)
             {
-                // Need a way to choose which of 3 spots to spawn
-                // And then of the 2 remaining, whether to spawn one and which
-                // And then, whether to also spawn the 3rd
-                // Eek. 
-                // rand int 0/1/2 and pass that in. for no. 1. ez
-                // 2 more tries. maybe then it's spawn 0->6 and if answer is unused good?
-                // TODO: should have a minBalloonYPos yes I get it
-                float birdHeightRange =_maxBirdYPos - _minBirdYPos;
-                float balloonHeightRange =_maxBalloonYPos - _minBirdYPos;
-                bool[] isSlotFree = new bool[] {true, true, true};
-                for (int i = 0; i < 3; i++)
+                // Do a probability - should we use this spot?
+                // If yes, choose whether to spawn a bird or balloon
+                // Once chosen, choose where to put it:
+                // startHeight + (heightRange / i) + Random.Range(-0.25f, 0.25f); 
+
+                // Should we use this spot?
+                if (Random.Range(0f, 100f) < requiredSpawnProb)
                 {
-                    int x = Random.Range(0, 3*(i+1)); // First Slot
-                    if (x < 3 && isSlotFree[x])
+                    // Choose whether to spawn a bird or balloon
+                    if (Random.Range(0f, 100f) < _percentageBalloons)
                     {
-                        isSlotFree[x] = false;
-                        if (Random.Range(0f, 100f) < _percentageBalloons)
-                        {
-                            float startHeight = _minBirdYPos + balloonHeightRange * x/3;
-                            float endHeight = startHeight + (balloonHeightRange * 1/3);
-                            SpawnBalloon(startHeight, endHeight);
-                        }
-                        else
-                        {
-                            float startHeight = _minBirdYPos + birdHeightRange * x/3;
-                            float endHeight = startHeight + (birdHeightRange * 1/3);
-                            SpawnBird(startHeight, endHeight);
-                        }
+                        // If we want to actually calculate the variance we could look at how much space there'll be
+                        // In between slots - e.g. if birds are 1f high on a 3.5f space, there'll be 3 starting slots with 0.5f space extra
+                        // So 0.5f/3 is ~0.16f of variance, so it'd be -0.08f->0.08f either side if we didn't want any to overlap. But...they sort themselves out, so a bit of overlap is fine
+                        SpawnBalloon(_minBirdYPos + (balloonHeightRange * i / _numSpawnSlots) + _birdHeight/2 + Random.Range(-0.25f, 0.25f));
+                    }
+                    else
+                    {
+                        SpawnBird(_minBirdYPos + (birdHeightRange * i / _numSpawnSlots) + _birdHeight/2 + Random.Range(-0.25f, 0.25f));
                     }
                 }
             }
@@ -172,10 +161,16 @@ public class Main : MonoBehaviour
     {
         _screenWidth = Screen.width;
         _screenHeight = Screen.height;
-        _topOfScreen = _camera.ViewportToWorldPoint(new Vector3(0.5f, 1f, 10)).y;
-        _minBirdYPos = _grandpaTransform.position.y +2f;
-        _maxBirdYPos = _topOfScreen - 1f;
-        _maxBalloonYPos = _topOfScreen + 0.2f;
+        
+        _minBirdYPos = _grandpaTransform.position.y + 2f; // For padding
+
+        var topOfScreen = _camera.ViewportToWorldPoint(Vector2.one).y;
+        _maxBirdYPos = topOfScreen - _birdHeight;
+        _maxBalloonYPos = topOfScreen + 0.2f;
+
+        _numSpawnSlots = Mathf.FloorToInt((_maxBirdYPos - _minBirdYPos) / _birdHeight);
+
+        Debug.Log(string.Format("min and max bird are {0} and {1} and there are {2} slots", _minBirdYPos, _maxBirdYPos, _numSpawnSlots));
     }
 
     public void StartGame()
@@ -187,7 +182,9 @@ public class Main : MonoBehaviour
 
         _numLives = _lives.Length - 1;
         _score = 0;
-        SpawnBird(_minBirdYPos, _maxBirdYPos);
+
+        float birdHeightRange =_maxBirdYPos - _minBirdYPos;
+        SpawnBird(_minBirdYPos + (birdHeightRange * Random.Range(0, _numSpawnSlots)/_numSpawnSlots) + _birdHeight/2 + Random.Range(-0.25f, 0.25f));
 
         _isGameOver = false;
         _isGamePaused = false;
@@ -242,12 +239,12 @@ public class Main : MonoBehaviour
 		AudioListener.pause = !AudioListener.pause;
 	}
 
-    private void SpawnBird(float minYPos, float maxYPos)
+    private void SpawnBird(float startingHeight)
     {
         GameObject birdObj = GetOrCreatePooledBird();
         birdObj.SetActive(true);
         float leftSideOfScreen = _camera.ViewportToWorldPoint(new Vector3(0, 0, 10)).x;
-        birdObj.transform.position = new Vector3(leftSideOfScreen - Random.Range(1f, 2.5f), Random.Range(minYPos, maxYPos), birdObj.transform.position.z);
+        birdObj.transform.position = new Vector3(leftSideOfScreen - Random.Range(1f, 2.5f), startingHeight, birdObj.transform.position.z);
         Bird bird = birdObj.GetComponent<Bird>();
         bird.Reset();
         Fly fly = birdObj.GetComponent<Fly>();
@@ -258,12 +255,12 @@ public class Main : MonoBehaviour
 		BirdSpawned?.Invoke();
 	}
 
-	private void SpawnBalloon(float minYPos, float maxYPos)
+	private void SpawnBalloon(float startingHeight)
 	{
         GameObject balloonObj = GetOrCreatePooledBalloon();
         balloonObj.SetActive(true);
         float leftSideOfScreen = _camera.ViewportToWorldPoint(new Vector3(0, 0, 10)).x;
-		balloonObj.transform.position = new Vector3(leftSideOfScreen - 1, Random.Range(minYPos, maxYPos), balloonObj.transform.position.z); // higher up and further back than the birds
+		balloonObj.transform.position = new Vector3(leftSideOfScreen - 1, startingHeight, balloonObj.transform.position.z); // higher up and further back than the birds
 		balloonObj.transform.parent = _airBalloonPool.transform;
     }
 
