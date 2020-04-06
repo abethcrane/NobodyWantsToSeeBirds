@@ -17,7 +17,7 @@ public class Main : MonoBehaviour
 	public static Main Instance;
 
     public float SecondsBetweenSpawns = 3f; // Used only as a visual for debugging
-    public float Velocity = 1f;
+    public float Speed = 3f;
 
     [SerializeField]
     private TextMeshProUGUI _healthText;
@@ -53,7 +53,7 @@ public class Main : MonoBehaviour
 	private AnimationCurve _spawnSpeedIncrease;
 
 	[SerializeField]
-	private AnimationCurve _birdVelocityIncrease;
+	private AnimationCurve _birdSpeedIncrease;
 
 	[SerializeField]
 	private AnimationCurve _spawnProbabilityPerFrame;
@@ -247,13 +247,13 @@ public class Main : MonoBehaviour
         GameObject birdObj = GetOrCreatePooledBird();
         birdObj.SetActive(true);
         float leftSideOfScreen = _camera.ViewportToWorldPoint(new Vector3(0, 0, 10)).x;
-        birdObj.transform.position = new Vector3(leftSideOfScreen - 1, Random.Range(minYPos, maxYPos), birdObj.transform.position.z);
+        birdObj.transform.position = new Vector3(leftSideOfScreen - Random.Range(1f, 2.5f), Random.Range(minYPos, maxYPos), birdObj.transform.position.z);
         Bird bird = birdObj.GetComponent<Bird>();
         bird.Reset();
         Fly fly = birdObj.GetComponent<Fly>();
-		Velocity = _birdVelocityIncrease.Evaluate(MinutesOfGamePlay);
-		fly.Velocity = new Vector3(Velocity, 0, 0);
-
+		Speed = _birdSpeedIncrease.Evaluate(MinutesOfGamePlay);
+		fly.Speed = Speed;
+        fly.Rotation = Random.Range(-5f, 5f);
 
 		BirdSpawned?.Invoke();
 	}

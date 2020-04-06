@@ -1,12 +1,46 @@
 ﻿using UnityEngine;
 
-public class Fly : MonoBehaviour {
+public class Fly : MonoBehaviour
+{
+    [SerializeField]
+    private float _speed = 2f;
 
-    public Vector3 Velocity = new Vector3(0.1f, 0, 0);
+    [SerializeField]
+    private float _rotation = 0f;
 
-    void Update ()
+    public float Speed
     {
-        float dt = Time.deltaTime;
-        transform.Translate(Velocity * dt * Time.timeScale);
+        set
+        {
+            if (_speed != value)
+            {
+                _speed = value;
+            }
+        }
+    }
+    
+    public float Rotation
+    {
+        set
+        {
+            if (_rotation != value)
+            {
+                _rotation = value;
+                transform.rotation = transform.rotation * Quaternion.Euler(0, 0, _rotation);
+            }
+        }
+    }
+
+    private void OnEnable()
+    {
+        var rigidbody = GetComponent<Rigidbody2D>();
+        transform.rotation = transform.rotation * Quaternion.Euler(0, 0, _rotation);
+        rigidbody.velocity =  transform.right * _speed;        
+    }
+
+    private void Update()
+    {
+        var rigidbody = GetComponent<Rigidbody2D>();
+        rigidbody.velocity =  transform.right * _speed;
     }
 }

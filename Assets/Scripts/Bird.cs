@@ -31,7 +31,6 @@ public class Bird : MonoBehaviour
         _hasLostLife = false;
 
         // Set a unique sorting order on each bird so they don't flicker in and out behind each other
-        Debug.Log("Setting sort order to " + SortOrder);
         foreach (var sprite in _sprites) {
             sprite.sortingOrder = SortOrder;
         }
@@ -51,12 +50,10 @@ public class Bird : MonoBehaviour
     {
         if (Main.Instance.IsGameActive)
         {
-            Debug.Log("mouse down on " + gameObject.name);
             // We used to have an else here, where you'd play _uncensor
             // And set it to be visible to grampa again
             if (_isVisibleToGrampa)
             {
-                Debug.Log("and it's visible to grampa " + gameObject.name);
                 _isVisibleToGrampa = false;
                 _anim.SetBool("IsVisible", false);
                 _censor?.Play();
@@ -96,7 +93,6 @@ public class Bird : MonoBehaviour
         yield return new WaitForSeconds(.1f);
 
         gameObject.SetActive(false);
-	}
-    
+	}    
 	
 }
