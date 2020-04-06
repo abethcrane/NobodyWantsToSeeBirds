@@ -37,6 +37,11 @@ public class Bird : MonoBehaviour
 
         _sprites[0].gameObject.SetActive(true);
         _sprites[1].gameObject.SetActive(false);
+
+        if (_anim != null)
+        {
+            _anim.speed = Random.Range(0.8f, 1f);
+        }
     }
 
     private void Start()

@@ -108,7 +108,7 @@ public class FullscreenSprite : MonoBehaviour
 
     void ResizeSpriteToScreenPerspective()
     {
-        float spriteHeight = spriteRenderer.sprite.bounds.size.y;
+        float spriteHeight = _spriteRenderer.sprite.bounds.size.y;
         float spriteWidth = _spriteRenderer.sprite.bounds.size.x;
         float distance = transform.position.z - _camera.transform.position.z;
         float screenHeight = 2 * Mathf.Tan(_camera.fieldOfView * Mathf.Deg2Rad / 2) * distance;

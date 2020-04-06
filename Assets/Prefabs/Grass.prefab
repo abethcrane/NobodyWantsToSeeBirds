@@ -488,7 +488,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _anchorPos: 1
-  _minHeight: 0.5
+  _minHeight: 0.75
   _maxHeight: 1.5
   _horizontalAnchorPoint: 0.8
 --- !u!1001 &8853726431542718892

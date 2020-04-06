@@ -30,7 +30,6 @@ public class Balloon : MonoBehaviour
             fly.Speed = 2f;
         }
 
-
         GetComponent<Rigidbody2D>().gravityScale = 0f;
     }
 
