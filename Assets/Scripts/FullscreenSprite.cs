@@ -19,6 +19,11 @@ public class FullscreenSprite : MonoBehaviour
     [Range(0,2)]
     private float _maxHeight = 1f;
 
+    [SerializeField]
+    [Range(0,1)]
+    [Tooltip("The percentage along the image to prioritize if we need to start zooming in")]
+    private float _horizontalAnchorPoint = 0.5f;
+
     private SpriteRenderer _spriteRenderer;
     private Camera _camera;
     private float _screenWidth;
@@ -34,17 +39,20 @@ public class FullscreenSprite : MonoBehaviour
         _screenWidth = Screen.width;
         _screenHeight = Screen.height;
                 
-        if (_anchorPos == AnchorPoint.Center)
+        switch (_anchorPos)
         {
-            _viewPortValue = 0.5f;
-        }
-        else if (_anchorPos == AnchorPoint.Bottom)
-        {
-            _viewPortValue = 0f;
+            case AnchorPoint.Center:
+                _viewPortValue = 0.5f;
+                break;
+            case AnchorPoint.Bottom:
+                _viewPortValue = 0f;
+                break;
+            case AnchorPoint.Top:
+                _viewPortValue = 1f;
+                break;            
         }
 
         ResizeSpriteToScreenOrtho();
-        RepositionSprite();
     }
 
     void Update()
@@ -54,7 +62,6 @@ public class FullscreenSprite : MonoBehaviour
             _screenWidth = Screen.width;
             _screenHeight = Screen.height;
             ResizeSpriteToScreenOrtho();
-            RepositionSprite();
         }
     }
     void ResizeSpriteToScreenOrtho()
@@ -72,34 +79,40 @@ public class FullscreenSprite : MonoBehaviour
         float newSpriteHeight = spriteBoundsHeight * newScale;
         float newSpritePercentOfScreenHeight = newSpriteHeight / worldScreenHeight;
 
-        //Debug.Log(string.Format("Pre clamp: height: {0}, percent of screen: {1}, scale:{2}", newSpriteHeight, newSpritePercentOfScreenHeight, newScale));
-
         newSpritePercentOfScreenHeight = Mathf.Clamp(newSpritePercentOfScreenHeight, _minHeight, _maxHeight);
         newSpriteHeight = newSpritePercentOfScreenHeight * worldScreenHeight;
         newScale =  newSpriteHeight / spriteBoundsHeight;
 
-        //Debug.Log(string.Format("Post clamp: height: {0}, percent of screen: {1}, scale:{2}", newSpriteHeight, newSpritePercentOfScreenHeight, newScale));
-
         // Apply the new scale (evenly to x and y to maintain aspect ratio)
         transform.localScale = new Vector3(newScale, newScale, 1);
+
+        // Now reposition the sprite!
+        // By default we center it horizontally, and position the vertical based on the enum
+        var newPos = _camera.ViewportToWorldPoint(new Vector2(0.5f, _viewPortValue)); 
+
+        // Recalculate now that we've scaled
+        var newSpriteWidth = spriteBoundsWidth * newScale;
+
+        // But if we're zooming in on the image to fit the desired min/max height, we use the _horizontalAnchorPoint
+        if (newSpriteWidth > worldScreenWidth)
+        {
+            // If we're zooming in to e.g. 80%, we want to keep our _horizontalAnchorPoint where it is
+            // So if it was 0.75, keep the 75% mark of the image at 75% along the screen
+            var stickingPoint = _camera.ViewportToWorldPoint(new Vector2(_horizontalAnchorPoint, _viewPortValue)).x;
+            var newLeftEdgeOfSprite = stickingPoint - (newSpriteWidth * _horizontalAnchorPoint);
+            newPos.x = newLeftEdgeOfSprite + (newSpriteWidth / 2);
+        }
+
+        transform.position = new Vector3(newPos.x, newPos.y, _initialZPos);
     }
 
     void ResizeSpriteToScreenPerspective()
     {
-        //float spriteHeight = spriteRenderer.sprite.bounds.size.y;
+        float spriteHeight = spriteRenderer.sprite.bounds.size.y;
         float spriteWidth = _spriteRenderer.sprite.bounds.size.x;
         float distance = transform.position.z - _camera.transform.position.z;
         float screenHeight = 2 * Mathf.Tan(_camera.fieldOfView * Mathf.Deg2Rad / 2) * distance;
         float screenWidth = screenHeight * _camera.aspect;
         transform.localScale = new Vector3(screenWidth / spriteWidth, screenWidth / spriteWidth, 1);
     }
-
-    void RepositionSprite()
-    {
-        transform.position = _camera.ViewportToWorldPoint(new Vector3(0.5f, _viewPortValue, 10));
-
-        Debug.Log(gameObject.name + " - " + transform.position);
-
-        transform.position = new Vector3(transform.position.x, transform.position.y, _initialZPos);
-    }
-}
+ }

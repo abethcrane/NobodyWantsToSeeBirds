@@ -488,8 +488,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _anchorPos: 1
-  _minHeight: 0.3
+  _minHeight: 0.5
   _maxHeight: 1.5
+  _horizontalAnchorPoint: 0.8
 --- !u!1001 &8853726431542718892
 PrefabInstance:
   m_ObjectHideFlags: 0
