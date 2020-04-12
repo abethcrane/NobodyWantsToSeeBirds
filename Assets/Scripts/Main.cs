@@ -96,22 +96,9 @@ public class Main : MonoBehaviour
 		Screen.sleepTimeout = SleepTimeout.NeverSleep;
 	}
 
-
     // So currently we're putting out a new bird at decreasing speed intervals, with increasing velocity
     // I want to change it so that we have a number of height slots and maybe we increase the probability that we fire from them as time goes on
     // And maybe we increase the average velocity over time but still have a range
-    // Maybe if a height starting slot is used we don't send another one out until it's off screen? 
-    // Or maybe we vary their heights a lot so that they don't fly straight and they go all over? In which case starting slot is probably just a delay not a stop
-    // Dan says we can't vary their heights so much that they go off screen, so maybe we just add a lil more randomness to their flight patterns? 
-    // let's start with the height slots.
-    // How do I still keep the nice randomness of not having discrete 'slots' but not overlap my starting points.
-    // maybe when i pick a starting point, I give a bird-sized buffer around it, and either:
-    // - randomly decide if generate a 2nd bird and gen its height within constraints
-    // - if next bird's random height is in range, it gets to exist else no go.
-    // Let's start with former.
-    // So every turn we need to decide how many birds to spawn. Maybe every turn we decide whether to spawn one in the middle, the upper, and the lower
-    // Each gets a chance.
-    // So instead of having a secondsPerSpawn, we just gradually increase the probability that we're spawning a bird.
 
     private void Update()
     {
@@ -125,7 +112,8 @@ public class Main : MonoBehaviour
             }
 
             float secondsBetweenSpawns = _spawnSpeedIncrease.Evaluate(MinutesOfGamePlay);
-            _spawnProbability = 100 / (SecondsBetweenSpawns * (1 / Time.deltaTime));
+            // This is just magic haha
+            _spawnProbability = 200 / (SecondsBetweenSpawns * (1 / Time.deltaTime));
 
             float requiredSpawnProb = _spawnProbability / _numSpawnSlots;
             float birdHeightRange =_maxBirdYPos - _minBirdYPos;
@@ -165,7 +153,7 @@ public class Main : MonoBehaviour
         _minBirdYPos = _grandpaTransform.position.y + 2f; // For padding
 
         var topOfScreen = _camera.ViewportToWorldPoint(Vector2.one).y;
-        _maxBirdYPos = topOfScreen - _birdHeight;
+        _maxBirdYPos = topOfScreen - 0.25f;
         _maxBalloonYPos = topOfScreen + 0.2f;
 
         _numSpawnSlots = Mathf.FloorToInt((_maxBirdYPos - _minBirdYPos) / _birdHeight);
@@ -250,7 +238,7 @@ public class Main : MonoBehaviour
         Fly fly = birdObj.GetComponent<Fly>();
 		Speed = _birdSpeedIncrease.Evaluate(MinutesOfGamePlay);
 		fly.Speed = Speed;
-        fly.Rotation = Random.Range(-5f, 5f);
+        fly.Rotation = 0f;//Random.Range(-5f, 5f);
 
 		BirdSpawned?.Invoke();
 	}
