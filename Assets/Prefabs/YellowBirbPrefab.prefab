@@ -69,6 +69,14 @@ MonoBehaviour:
   _sprites:
   - {fileID: 1985224203310118}
   - {fileID: 2537870378638125319}
+  _materials:
+  - {fileID: 2100000, guid: 5ed5f8e4e59e848dfa8a535a8f3dd24f, type: 2}
+  - {fileID: 2100000, guid: a8563646375ef448895a550543376e67, type: 2}
+  - {fileID: 2100000, guid: b8ea95d8612ac4d069a8092a68fde740, type: 2}
+  - {fileID: 2100000, guid: 0b8f892a2e7804131a7643f6850feaa2, type: 2}
+  - {fileID: 2100000, guid: c32c3f359e1f74af7a9bedb50dc7c392, type: 2}
+  - {fileID: 2100000, guid: fe7b6add5bd684c088398b1552d0d15a, type: 2}
+  - {fileID: 2100000, guid: 2e100c8b88ea54cafa4279b640c454a1, type: 2}
   SortOrder: 1
 --- !u!95 &95135834772502526
 Animator:
@@ -710,6 +718,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -792,6 +801,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

@@ -14,6 +14,12 @@ public class Bird : MonoBehaviour
     [SerializeField]
     private SpriteRenderer[] _sprites;
 
+    [SerializeField]
+    private Material[] _materials;
+
+    [SerializeField]
+    private bool _useMulticoloredBirds;
+
     public int SortOrder = 1;
 
     private Animator _anim;
@@ -37,6 +43,11 @@ public class Bird : MonoBehaviour
 
         _sprites[0].gameObject.SetActive(true);
         _sprites[1].gameObject.SetActive(false);
+
+        var materialNum = _useMulticoloredBirds ? Random.Range(0, _materials.Length - 1) : 0;
+
+        _sprites[0].material = _materials[materialNum];
+        _sprites[1].material = _materials[materialNum];
     }
 
     private void Start()
