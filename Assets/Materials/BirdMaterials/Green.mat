@@ -90,5 +90,5 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _HSVAAdjust: {r: -2.87, g: -0.46, b: -0.15, a: 0}
+    - _HSVAAdjust: {r: -2.78, g: -0.54, b: -0.15, a: 0}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}

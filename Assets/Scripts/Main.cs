@@ -18,6 +18,7 @@ public class Main : MonoBehaviour
 
     public float SecondsBetweenSpawns = 3f; // Used only as a visual for debugging
     public float Speed = 3f;
+    public bool IsRainbowBirdsEnabled;
 
     [SerializeField]
     private TextMeshProUGUI _healthText;
@@ -99,7 +100,6 @@ public class Main : MonoBehaviour
     // So currently we're putting out a new bird at decreasing speed intervals, with increasing velocity
     // I want to change it so that we have a number of height slots and maybe we increase the probability that we fire from them as time goes on
     // And maybe we increase the average velocity over time but still have a range
-
     private void Update()
     {
         if (IsGameActive)
@@ -114,6 +114,7 @@ public class Main : MonoBehaviour
             float secondsBetweenSpawns = _spawnSpeedIncrease.Evaluate(MinutesOfGamePlay);
             // This is just magic haha
             _spawnProbability = 200 / (SecondsBetweenSpawns * (1 / Time.deltaTime));
+            Debug.Log($"Seconds between {SecondsBetweenSpawns}, deltaTime {Time.deltaTime} = spawn prob {_spawnProbability}");
 
             float requiredSpawnProb = _spawnProbability / _numSpawnSlots;
             float birdHeightRange =_maxBirdYPos - _minBirdYPos;
