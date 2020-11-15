@@ -77,6 +77,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: c32c3f359e1f74af7a9bedb50dc7c392, type: 2}
   - {fileID: 2100000, guid: fe7b6add5bd684c088398b1552d0d15a, type: 2}
   - {fileID: 2100000, guid: 2e100c8b88ea54cafa4279b640c454a1, type: 2}
+  _useMulticoloredBirds: 1
   SortOrder: 1
 --- !u!95 &95135834772502526
 Animator:
@@ -743,8 +744,7 @@ SpriteRenderer:
   m_SortingLayerID: -666936841
   m_SortingLayer: 4
   m_SortingOrder: 1
-  m_Sprite: {fileID: 4267764412451003434, guid: 44b4e77ff8ccd45fa9b50a53895271a9,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: 76e29e018a0dc460598a57a7c4ac4701, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -826,8 +826,7 @@ SpriteRenderer:
   m_SortingLayerID: -666936841
   m_SortingLayer: 4
   m_SortingOrder: 1
-  m_Sprite: {fileID: -8115613844752713411, guid: 44b4e77ff8ccd45fa9b50a53895271a9,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: 64b26e4fac170427597ea010c27eaad4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
