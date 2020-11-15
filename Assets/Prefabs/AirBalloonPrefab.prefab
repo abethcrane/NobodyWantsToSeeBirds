@@ -69,9 +69,6 @@ MonoBehaviour:
   _audioSourcePop: {fileID: 2231934752960893869}
   _audioSourceHiss: {fileID: 5641118878380361247}
   _audioSourceThump: {fileID: 1287224952640432532}
-  _balloonPop: {fileID: 8300000, guid: e969c7a42f478495ea540d666b56c701, type: 3}
-  _balloonHiss: {fileID: 8300000, guid: 3dc1852a9a7da41d9adbbe9a642b2b44, type: 3}
-  _balloonThump: {fileID: 8300000, guid: 9899ca71719dc413a81ec6622e9cc8a2, type: 3}
 --- !u!95 &95135834772502526
 Animator:
   serializedVersion: 3
@@ -103,7 +100,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 1
-  m_Mass: 0.7648232
+  m_Mass: 0.76473707
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -731,10 +728,11 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bfdf23f091f3244b09f778aab9bf74b9, type: 2}
+  - {fileID: 2100000, guid: d8dce30c489e64e60b5ff7c3c86a55ca, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
