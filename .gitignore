@@ -10,3 +10,4 @@ Builds/*
 Logs/Packages-Update.log
 *.csproj
 Assets/Unused/*
+user.keystore
