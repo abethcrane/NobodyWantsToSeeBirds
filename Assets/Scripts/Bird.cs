@@ -58,13 +58,17 @@ public class Bird : MonoBehaviour
     {
         if (Main.Instance.IsGameActive)
         {
-            // We used to have an else here, where you'd play _uncensor
-            // And set it to be visible to grampa again
             if (_isVisibleToGrampa)
             {
                 _isVisibleToGrampa = false;
                 _anim.SetBool("IsVisible", false);
                 _censor?.Play();
+            }
+            else if (Main.Instance.AreBirdsUntappable)
+            {
+                _isVisibleToGrampa = true;
+                _anim.SetBool("IsVisible", true);
+                _uncensor?.Play();
             }
         }
     }

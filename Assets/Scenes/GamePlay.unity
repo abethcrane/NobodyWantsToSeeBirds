@@ -1519,6 +1519,7 @@ MonoBehaviour:
   SecondsBetweenSpawns: 2
   Speed: 3
   IsRainbowBirdsEnabled: 0
+  AreBirdsUntappable: 1
   _healthText: {fileID: 1085774976}
   _tapToPlay: {fileID: 1012543212}
   _pauseButton: {fileID: 749145667}

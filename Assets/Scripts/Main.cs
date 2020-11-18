@@ -19,6 +19,7 @@ public class Main : MonoBehaviour
     public float SecondsBetweenSpawns = 3f; // Used only as a visual for debugging
     public float Speed = 3f;
     public bool IsRainbowBirdsEnabled;
+    public bool AreBirdsUntappable;
 
     [SerializeField]
     private TextMeshProUGUI _healthText;
