@@ -22,6 +22,9 @@ public class Main : MonoBehaviour
     public bool AreBirdsUntappable;
 
     [SerializeField]
+    private bool _useSillyRotationMode;
+
+    [SerializeField]
     private TextMeshProUGUI _healthText;
 
     [SerializeField]
@@ -223,7 +226,7 @@ public class Main : MonoBehaviour
         Fly fly = birdObj.GetComponent<Fly>();
 		Speed = _birdSpeedIncrease.Evaluate(MinutesOfGamePlay);
 		fly.Speed = Speed;
-        fly.Rotation = 0f;//Random.Range(-5f, 5f);
+        fly.Rotation = _useSillyRotationMode ? Random.Range(-5f, 5f) : 0;
 
 		BirdSpawned?.Invoke();
 	}
