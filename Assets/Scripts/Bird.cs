@@ -23,6 +23,7 @@ public class Bird : MonoBehaviour
     private bool _isVisibleToGrampa = true;
     private bool _hasLostLife = false;
     private VisibilityManager _visibilityManager;
+    private bool _hasGoneOffScreen = false;
 
     public void Reset()
     {
@@ -32,6 +33,7 @@ public class Bird : MonoBehaviour
             _anim.SetBool("IsVisible", _isVisibleToGrampa);
         }
         _hasLostLife = false;
+        _hasGoneOffScreen = false;
 
         // Set a unique sorting order on each bird so they don't flicker in and out behind each other
         foreach (var sprite in _sprites) {
@@ -92,9 +94,11 @@ public class Bird : MonoBehaviour
 
     private void OnOffScreen()
 	{
-        Main.Instance.OffScreen();
-
-        StartCoroutine("DisableGameObject");
+        if (!_hasGoneOffScreen) {
+            _hasGoneOffScreen = true;
+            Main.Instance.OffScreen();
+            StartCoroutine("DisableGameObject");
+        }
     }
 
     private IEnumerator DisableGameObject()

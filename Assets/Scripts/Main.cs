@@ -28,13 +28,13 @@ public class Main : MonoBehaviour
     private TextMeshProUGUI _healthText;
 
     [SerializeField]
+    private TextMeshProUGUI _scoreText;
+
+    [SerializeField]
     private GameObject _tapToPlay;
 
     [SerializeField]
     private GameObject _pauseButton;
-
-    [SerializeField]
-    private TextMeshProUGUI _scoreText;
 
 	[SerializeField]
     private GameObject _birdPrefab;
@@ -70,6 +70,7 @@ public class Main : MonoBehaviour
     private List<GameObject> _birds = new List<GameObject>();
     private int _numLives;
     private int _score = 0;
+    private string _scoreName;
     private Camera _camera;
     private Animator _cameraAnim;
     private float _screenWidth;
@@ -77,7 +78,7 @@ public class Main : MonoBehaviour
     private float _minFlyingPos = 0;
     private float _maxBirdYPos = 1;
     private float _maxBalloonYPos =  1;
-    private float _birdHeight = 1.5f; // This /should/ be calculated from bird extents but *shrug*
+    private float _birdHeight = 1.875f; // This /should/ be calculated from bird extents but *shrug*
 
     public bool IsGameActive => !_isGameOver && !_isGamePaused;
     public float SecondsOfGamePlay { get; private set; } = 0f;
@@ -99,6 +100,8 @@ public class Main : MonoBehaviour
 		Screen.sleepTimeout = SleepTimeout.NeverSleep; // Stop screen dimming
 
         BirdSpawned += OnBirdSpawn;
+
+        _scoreName = _scoreText.text.Split(':')[0] ?? "Score";
 	}
 
     private void Update()
@@ -114,9 +117,10 @@ public class Main : MonoBehaviour
 
             _timeSinceLastSpawn += Time.deltaTime;
 
-            // If we're overdue for a bird we have 75% chance of spawning one. If we're not due yet, we have an 0.1% chance
-            if (_timeSinceLastSpawn > SecondsBetweenSpawns && Random.Range(0, 100) < 75
-                || _timeSinceLastSpawn < SecondsBetweenSpawns && Random.Range(0, 100) < 0.1)
+            // If we're overdue then we have a very reasonable chance of spawning something.
+            // If we're not due yet, we have a quite low but not impossible chance
+            if (_timeSinceLastSpawn > SecondsBetweenSpawns && Random.Range(0, 100) < 40
+                || _timeSinceLastSpawn < SecondsBetweenSpawns && Random.Range(0, 100) < 0.05)
             {
                 // Choose whether to spawn a bird or balloon
                 if (Random.Range(0f, 100f) < _percentageBalloons)
@@ -143,8 +147,8 @@ public class Main : MonoBehaviour
         _minFlyingPos = _grandpaTransform.position.y + 2f; // For padding
 
         var topOfScreen = _camera.ViewportToWorldPoint(Vector2.one).y;
-        _maxBirdYPos = topOfScreen - 0.25f;
-        _maxBalloonYPos = topOfScreen + 0.2f;
+        _maxBirdYPos = topOfScreen - (_birdHeight * 0.5f);
+        _maxBalloonYPos = topOfScreen + 0.1f;
     }
 
     public void StartGame()
@@ -168,7 +172,7 @@ public class Main : MonoBehaviour
         if (IsGameActive)
         {
             _score += 1;
-            _scoreText.text = "Score: " + _score.ToString();
+            _scoreText.text = $"{_scoreName}: {_score}";
         }
     }
 
