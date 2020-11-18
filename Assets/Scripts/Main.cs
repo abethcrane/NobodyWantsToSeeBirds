@@ -4,12 +4,17 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
+public enum HealthDamage {
+    BalloonCrashed,
+    SawBird
+}
+
 public class Main : MonoBehaviour
 {
     public const int NumBirdsPerQuoteLevelQuote = 50;
     private const float DefaultDecayRate = 0.75f;
 
-    public event System.Action LostLife;
+    public event System.Action<HealthDamage> LostLife;
     public event System.Action GameOver;
 	public event System.Action BirdSpawned;
 	public event System.Action<bool> PauseToggled;
@@ -139,18 +144,6 @@ public class Main : MonoBehaviour
         }
     }
 
-    private void UpdateScreenDimensions()
-    {
-        _screenWidth = Screen.width;
-        _screenHeight = Screen.height;
-        
-        _minFlyingPos = _grandpaTransform.position.y + 2f; // For padding
-
-        var topOfScreen = _camera.ViewportToWorldPoint(Vector2.one).y;
-        _maxBirdYPos = topOfScreen - (_birdHeight * 0.5f);
-        _maxBalloonYPos = topOfScreen + 0.1f;
-    }
-
     public void StartGame()
     {
         // Reload the scene, but that doesn't reload this script
@@ -167,7 +160,7 @@ public class Main : MonoBehaviour
         _isGamePaused = false;
     }
 
-    public void OffScreen()
+    public void BirdWentOffScreen()
     {
         if (IsGameActive)
         {
@@ -176,28 +169,15 @@ public class Main : MonoBehaviour
         }
     }
 
-    public void LoseLife()
+    public void SawBird()
     {
-        _numLives -= 1;
-
-        if (_numLives < 0)
-        {
-            return;
-        }
-
-        _healthText.text = string.Format("Lives: {0} {1}", _numLives, _lives[_numLives]);
-        LostLife?.Invoke();
-
-        if (_numLives == 0)
-        {
-            EndGame();
-        }
+        LoseLife(HealthDamage.SawBird);
     }
 
-    public void Explosion()
+    public void BalloonCrashed()
     {
         _cameraAnim.SetTrigger("Shake");
-        LoseLife();
+        LoseLife(HealthDamage.BalloonCrashed);
     }
 
     public void TogglePause()
@@ -215,6 +195,18 @@ public class Main : MonoBehaviour
 	{
 		AudioListener.pause = !AudioListener.pause;
 	}
+
+    private void UpdateScreenDimensions()
+    {
+        _screenWidth = Screen.width;
+        _screenHeight = Screen.height;
+        
+        _minFlyingPos = _grandpaTransform.position.y + 2f; // For padding
+
+        var topOfScreen = _camera.ViewportToWorldPoint(Vector2.one).y;
+        _maxBirdYPos = topOfScreen - (_birdHeight * 0.5f);
+        _maxBalloonYPos = topOfScreen + 0.1f;
+    }
 
     private void SpawnBird()
     {
@@ -291,6 +283,25 @@ public class Main : MonoBehaviour
         }
 
         return null;
+    }
+
+
+    private void LoseLife(HealthDamage reason)
+    {
+        _numLives -= 1;
+
+        if (_numLives < 0)
+        {
+            return;
+        }
+
+        _healthText.text = string.Format("Lives: {0} {1}", _numLives, _lives[_numLives]);
+        LostLife?.Invoke(reason);
+
+        if (_numLives == 0)
+        {
+            EndGame();
+        }
     }
 
     private void EndGame()

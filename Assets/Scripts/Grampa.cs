@@ -21,10 +21,14 @@ public class Grampa : MonoBehaviour
         Main.Instance.LostLife += OnLostLife;
     }
 
-    private void OnLostLife()
+    private void OnLostLife(HealthDamage reason)
 	{
         _grampaAnimator.SetTrigger("LostLife");
-        _visionAnimator.SetTrigger("Pulse");
+
+        if (reason == HealthDamage.SawBird)
+        {
+            _visionAnimator.SetTrigger("Pulse");
+        }
 
         if (_numLivesLost < _lostLifeGrumbles.Length)
         {

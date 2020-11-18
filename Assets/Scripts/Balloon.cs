@@ -92,7 +92,7 @@ public class Balloon : MonoBehaviour
     private void OnCrash()
     {
         // Play an explosion sound
-        Main.Instance.Explosion();
+        Main.Instance.BalloonCrashed();
         _audioSourceThump.Play();
         _hasLostLife = true;
         StartCoroutine ("DisableWhenNotPlaying");

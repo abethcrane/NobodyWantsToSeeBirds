@@ -403,7 +403,7 @@ GameObject:
   - component: {fileID: 8349101360096334130}
   - component: {fileID: 8349101360096334128}
   m_Layer: 0
-  m_Name: Grass
+  m_Name: Foreground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -440,6 +440,8 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -498,15 +500,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8349101360096334129}
     m_Modifications:
-    - target: {fileID: 649422368343854978, guid: 530dd0e6d4fa24c24bfea05b10b58f32,
+    - target: {fileID: 649422368343854976, guid: 530dd0e6d4fa24c24bfea05b10b58f32,
         type: 3}
-      propertyPath: m_Name
-      value: Grampa
-      objectReference: {fileID: 0}
-    - target: {fileID: 649422368343854978, guid: 530dd0e6d4fa24c24bfea05b10b58f32,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
+      propertyPath: m_RootOrder
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 649422368343854976, guid: 530dd0e6d4fa24c24bfea05b10b58f32,
         type: 3}
@@ -525,6 +522,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 649422368343854976, guid: 530dd0e6d4fa24c24bfea05b10b58f32,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 649422368343854976, guid: 530dd0e6d4fa24c24bfea05b10b58f32,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: -0
       objectReference: {fileID: 0}
@@ -540,16 +542,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 649422368343854976, guid: 530dd0e6d4fa24c24bfea05b10b58f32,
         type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 649422368343854976, guid: 530dd0e6d4fa24c24bfea05b10b58f32,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 649422368343854976, guid: 530dd0e6d4fa24c24bfea05b10b58f32,
-        type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
@@ -562,6 +554,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 649422368343854978, guid: 530dd0e6d4fa24c24bfea05b10b58f32,
+        type: 3}
+      propertyPath: m_Name
+      value: Grampa
+      objectReference: {fileID: 0}
+    - target: {fileID: 649422368343854978, guid: 530dd0e6d4fa24c24bfea05b10b58f32,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 530dd0e6d4fa24c24bfea05b10b58f32, type: 3}

@@ -87,7 +87,7 @@ public class Bird : MonoBehaviour
     {
         if (_isVisibleToGrampa && !_hasLostLife)
         {
-            Main.Instance.LoseLife();
+            Main.Instance.SawBird();
             _hasLostLife = true;
         }
     }
@@ -96,7 +96,7 @@ public class Bird : MonoBehaviour
 	{
         if (!_hasGoneOffScreen) {
             _hasGoneOffScreen = true;
-            Main.Instance.OffScreen();
+            Main.Instance.BirdWentOffScreen();
             StartCoroutine("DisableGameObject");
         }
     }
