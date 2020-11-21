@@ -1,8 +1,12 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MusicManager : MonoBehaviour
 {
+    [SerializeField]
+    private AudioSource _startMusic;
+
     [SerializeField]
     private AudioSource _holdMusic;
 
@@ -17,15 +21,21 @@ public class MusicManager : MonoBehaviour
 
     private void Awake()
     {
-        _themeMusicIntro.Play();
-        _themeMusicLoop.PlayDelayed(_themeMusicIntro.clip.length);
-		_themeMusicLoop.pitch = _musicPitchIncrease.Evaluate(0);
+
+        _themeMusicLoop.pitch = _musicPitchIncrease.Evaluate(0);
+        DontDestroyOnLoad(gameObject);
+
+        SceneManager.activeSceneChanged += OnActiveSceneChanged;
 	}
 
-    private void Start()
+    private void OnActiveSceneChanged(Scene previous, Scene current)
     {
-        Main.Instance.GameOver += OnGameOver;
-        Main.Instance.BirdSpawned += OnBirdSpawned;
+        if (current.name == "GamePlay")
+        {
+            Main.Instance.GameOver += OnGameOver;
+            Main.Instance.BirdSpawned += OnBirdSpawned;
+            StartCoroutine(CrossFade(_startMusic, _themeMusicIntro, 5f, nextMusic: _themeMusicLoop));
+        }
     }
 
     private void OnBirdSpawned()
@@ -36,25 +46,31 @@ public class MusicManager : MonoBehaviour
     private void OnGameOver()
     {
         StartCoroutine(CrossFade(_themeMusicLoop, _holdMusic));
+        _themeMusicLoop.pitch = _musicPitchIncrease.Evaluate(0);
     }
 
-    private static IEnumerator CrossFade(AudioSource oldMusic, AudioSource newMusic, float FadeTime=2f)
+    private static IEnumerator CrossFade(AudioSource oldMusic, AudioSource newMusic, float fadeTime=2f, AudioSource nextMusic = null)
     {
         float startVolume = oldMusic.volume;
         float endVolume = newMusic.volume;
         newMusic.volume = 0;
         newMusic.Play();
 
+        if (nextMusic != null)
+        {
+            nextMusic.PlayDelayed(newMusic.clip.length);
+        }
+
         while (oldMusic.volume > 0 || newMusic.volume < endVolume)
         {
             if (oldMusic.volume > 0)
             {
-                oldMusic.volume -= startVolume * Time.deltaTime / FadeTime;
+                oldMusic.volume -= startVolume * Time.deltaTime / fadeTime;
             }
 
             if (newMusic.volume < endVolume)
             {
-                newMusic.volume += endVolume * Time.deltaTime / FadeTime;
+                newMusic.volume += endVolume * Time.deltaTime / fadeTime;
             }
 
             yield return null;
